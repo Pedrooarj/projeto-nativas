@@ -87,7 +87,7 @@ restantes são variações do mesmo padrão de tela e de service.
 
 O backlog vive no **GitHub Projects** deste repositório, em quadro Kanban:
 
-**Quadro:** *(link do GitHub Projects — ver §7)*
+**Quadro:** <https://github.com/users/Pedrooarj/projects/1>
 
 13 histórias escritas como resultado para o usuário, todas priorizadas (P1 essencial
 ao MVP, P2 importante, P3 desejável) e estimadas em pontos (escala Fibonacci). As
@@ -187,9 +187,9 @@ Um item só sai de "Em revisão" quando **todas** as condições valem:
 
 | Integrante | Papel | Trilha | Revisa PR de |
 |---|---|---|---|
-| Pedro Otávio | **Product Owner e Scrum Master** · arquitetura e modelagem | API, banco, regras de negócio | Levy e Chistian |
-| Levy Fernandes | Desenvolvedor | Sistema do viveiro: quadro, formulários e CRUDs | Pedro e Chistian |
-| Chistian Daniel | Desenvolvedor | Portal público, acervo e teste de campo | Levy |
+| Pedro Otávio | **Product Owner e Scrum Master** · arquitetura e modelagem | API e banco · mapa público · apoio às duas trilhas | Levy e Chistian |
+| Levy Fernandes | Desenvolvedor | Sistema do viveiro: quadro de lotes, formulários e CRUDs | Pedro e Chistian |
+| Chistian Daniel | Desenvolvedor | Portal público e acervo · teste de campo no viveiro | Levy |
 
 Todo PR precisa de **uma aprovação de quem não o escreveu**. O Pedro acumula PO e
 Scrum Master — decide prioridade e cuida do quadro e das cerimônias. Sabemos que o
@@ -197,10 +197,19 @@ Scrum recomenda separar os dois papéis; numa equipe de três, a mitigação é 
 **retrospectiva ser facilitada em rodízio por Levy e Chistian**, para que quem
 prioriza o escopo não seja também quem julga o próprio processo.
 
-O quadro de acompanhamento é a peça mais difícil do frontend — mistura estado,
-chamada assíncrona, modal condicional e regra de transição — e por isso vai para quem
-tem mais experiência. O acervo é a peça mais visível do portal, com pouco estado e
-resultado rápido na tela, e é a trilha de quem está aprendendo.
+As trilhas foram divididas pela dificuldade real de cada peça, não por área do
+produto. O **quadro de acompanhamento** é o pedaço mais difícil do frontend — mistura
+estado, chamada assíncrona, modal condicional e regra de transição — e vai para quem
+tem mais experiência. O **mapa público**, com dois tipos de marcador, ícones próprios
+e janela ao clicar, fica com o PO, junto com toda a API.
+
+A trilha de quem está aprendendo web é **progressiva dentro da própria sprint**:
+começa pelas seções estáticas do portal (conteúdo e Tailwind, resultado visível na
+hora), avança para o **acervo com busca e filtro** — que já exige estado, chamada à
+API e lista renderizada — e depois para a página da espécie. O passo a passo,
+apontando arquivo por arquivo, está em [`aprendendo-react.md`](aprendendo-react.md).
+A regra é que ninguém recebe uma peça sem ter feito a anterior, e quando a fila
+apertar o PO puxa a peça mais complexa para si em vez de deixar alguém travado.
 
 ### Ferramentas
 
@@ -239,7 +248,7 @@ resultado rápido na tela, e é a trilha de quem está aprendendo.
 
 - **Coorte de apresentação:** **B — online**, por Google Meet.
   Sprint 1: 28/09 · Sprint 2: 19/10 · Sprint 3: 16/11 · Entrega final: 07/12.
-- **Quadro no GitHub Projects:** *(link)*
+- **Quadro no GitHub Projects:** <https://github.com/users/Pedrooarj/projects/1>
 - **Vídeo da Sprint 0:** *(link)*
 - **Integração com outra disciplina:** não há. O Projeto Nativas é conduzido apenas em
   DIM0510 Processos de Software.

@@ -1,7 +1,7 @@
 # 03 — Design system
 
-**A fonte da verdade visual é o protótipo validado no Claude Design** (`Nativas Principal`,
-`Nativas Acervo`, `Nativas Especie`, `Nativas Viveiro`). Este documento traz o que o protótipo
+**A fonte da verdade visual é o [protótipo validado no Claude Design](https://claude.ai/code/artifact/cb3adc0e-a497-46ff-adb0-380014f34c28)**
+(`Nativas Principal`, `Nativas Acervo`, `Nativas Especie`, `Nativas Viveiro`). Este documento traz o que o protótipo
 não carrega sozinho: os valores exatos, o raciocínio por trás das escolhas e as regras que
 precisam valer em telas que ainda não foram desenhadas.
 

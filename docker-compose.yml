@@ -1,0 +1,31 @@
+services:
+  banco:
+    image: postgres:16-alpine
+    container_name: nativas-banco
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: nativas
+      POSTGRES_PASSWORD: nativas
+      POSTGRES_DB: nativas
+    ports:
+      # Porta 5433 no host: evita conflito com um Postgres ja instalado na maquina.
+      - "5433:5432"
+    volumes:
+      - dados-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nativas -d nativas"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  adminer:
+    image: adminer:4
+    container_name: nativas-adminer
+    restart: unless-stopped
+    depends_on:
+      - banco
+    ports:
+      - "8080:8080"
+
+volumes:
+  dados-postgres:

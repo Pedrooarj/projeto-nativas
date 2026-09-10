@@ -1,0 +1,227 @@
+// Fonte da verdade do modelo de dados do Projeto Nativas.
+// Nomes de dominio em portugues; colunas em snake_case via @map.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Papel {
+  ADMIN
+  EQUIPE
+}
+
+// RN-02: apenas estes tres metodos. Choque termico e metodos quimicos ficaram
+// fora por decisao da coordenacao.
+enum MetodoQuebra {
+  ESCARIFICACAO
+  EMBEBICAO
+  N
+}
+
+enum TipoRecipiente {
+  TUBETE
+  SEMENTEIRA
+  SACO
+  CANO
+}
+
+enum SetorViveiro {
+  BANCO_SEMENTES
+  CANTEIROS
+  SEMENTEIRAS
+  RUSTIFICACAO
+}
+
+enum Estagio {
+  ESTAGIO_1
+  ESTAGIO_2
+  FINALIZADO
+}
+
+enum TipoDestino {
+  PLANTIO_DEFINITIVO
+  DOACAO
+  PERDA
+}
+
+/// Serve so para login. A equipe do viveiro compartilha uma conta (RN-06).
+model Usuario {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  senhaHash String   @map("senha_hash")
+  papel     Papel    @default(EQUIPE)
+  ativo     Boolean  @default(true)
+  criadoEm  DateTime @default(now()) @map("criado_em")
+
+  @@map("usuario")
+}
+
+/// Lista de nomes sem login: e o "quem esta registrando" dos formularios (RN-06).
+/// Nao confundir com Usuario.
+model Colaborador {
+  id    String  @id @default(uuid())
+  nome  String
+  ativo Boolean @default(true)
+
+  coletas   Coleta[]
+  lotes     LoteMudas[]
+  historico HistoricoCrescimento[]
+  destinos  DestinoFinal[]
+  visitas   Visita[]
+
+  @@map("colaborador")
+}
+
+model Substrato {
+  id    String  @id @default(uuid())
+  nome  String
+  ativo Boolean @default(true)
+
+  lotes LoteMudas[]
+
+  @@map("substrato")
+}
+
+model Especie {
+  id                String    @id @default(uuid())
+  nomeComum         String    @map("nome_comum")
+  nomeCientifico    String    @unique @map("nome_cientifico")
+  familia           String
+  descricao         String?   @db.Text
+  porte             String?
+  epocaFloracao     String?   @map("epoca_floracao")
+  epocaFrutificacao String?   @map("epoca_frutificacao")
+  usos              String[]  @default([])
+  fotoPrincipalUrl  String?   @map("foto_principal_url")
+  galeria           String[]  @default([])
+  criadoEm          DateTime  @default(now()) @map("criado_em")
+  deletedAt         DateTime? @map("deleted_at")
+
+  coletas Coleta[]
+  lotes   LoteMudas[]
+
+  @@index([nomeComum], map: "especie_nome_comum_idx")
+  @@map("especie")
+}
+
+model Coleta {
+  id             String    @id @default(uuid())
+  especieId      String    @map("especie_id")
+  matrizLat      Decimal   @map("matriz_lat") @db.Decimal(9, 6)
+  matrizLng      Decimal   @map("matriz_lng") @db.Decimal(9, 6)
+  qtdSementes    Int       @map("qtd_sementes")
+  dataColeta     DateTime  @map("data_coleta") @db.Date
+  localDescricao String?   @map("local_descricao")
+  fotoUrl        String?   @map("foto_url")
+  colaboradorId  String    @map("colaborador_id")
+  criadoEm       DateTime  @default(now()) @map("criado_em")
+  deletedAt      DateTime? @map("deleted_at")
+
+  especie     Especie     @relation(fields: [especieId], references: [id])
+  colaborador Colaborador @relation(fields: [colaboradorId], references: [id])
+  lotes       LoteMudas[]
+
+  @@index([especieId], map: "coleta_especie_id_idx")
+  @@map("coleta")
+}
+
+model LoteMudas {
+  id                String         @id @default(uuid())
+  tagUnica          String         @unique @map("tag_unica")
+  especieId         String         @map("especie_id")
+  coletaId          String         @map("coleta_id")
+  dataPlantio       DateTime       @map("data_plantio") @db.Date
+  qtdSementes       Int            @map("qtd_sementes")
+  qtdMudasVivas     Int?           @map("qtd_mudas_vivas")
+  tipoRecipiente    TipoRecipiente @map("tipo_recipiente")
+  tratamentoSemente MetodoQuebra   @map("tratamento_semente")
+  substratoId       String         @map("substrato_id")
+  setor             SetorViveiro
+  identificacaoFina String?        @map("identificacao_fina")
+  fotoUrl           String?        @map("foto_url")
+  estagioAtual      Estagio        @default(ESTAGIO_1) @map("estagio_atual")
+  colaboradorId     String         @map("colaborador_id")
+  criadoEm          DateTime       @default(now()) @map("criado_em")
+  deletedAt         DateTime?      @map("deleted_at")
+
+  especie     Especie                @relation(fields: [especieId], references: [id])
+  coleta      Coleta                 @relation(fields: [coletaId], references: [id])
+  substrato   Substrato              @relation(fields: [substratoId], references: [id])
+  colaborador Colaborador            @relation(fields: [colaboradorId], references: [id])
+  historico   HistoricoCrescimento[]
+  destino     DestinoFinal?
+
+  @@index([estagioAtual], map: "lote_mudas_estagio_atual_idx")
+  @@index([especieId], map: "lote_mudas_especie_id_idx")
+  @@map("lote_mudas")
+}
+
+/// Append-only: cada transicao de etapa grava uma linha e nenhuma e alterada (RN-03).
+model HistoricoCrescimento {
+  id               String          @id @default(uuid())
+  loteId           String          @map("lote_id")
+  estagioAnterior  Estagio?        @map("estagio_anterior")
+  estagioNovo      Estagio         @map("estagio_novo")
+  recipienteNovo   TipoRecipiente? @map("recipiente_novo")
+  setorNovo        SetorViveiro?   @map("setor_novo")
+  observacao       String?
+  dataTransferencia DateTime       @default(now()) @map("data_transferencia")
+  colaboradorId    String          @map("colaborador_id")
+
+  lote        LoteMudas   @relation(fields: [loteId], references: [id])
+  colaborador Colaborador @relation(fields: [colaboradorId], references: [id])
+
+  @@index([loteId], map: "historico_crescimento_lote_id_idx")
+  @@map("historico_crescimento")
+}
+
+/// 1:1 com o lote. Os campos por tipo sao opcionais no banco e exigidos no
+/// service conforme o tipo escolhido (RN-04).
+model DestinoFinal {
+  id             String      @id @default(uuid())
+  loteId         String      @unique @map("lote_id")
+  tipo           TipoDestino
+  data           DateTime    @db.Date
+  quantidade     Int
+  destinoLat     Decimal?    @map("destino_lat") @db.Decimal(9, 6)
+  destinoLng     Decimal?    @map("destino_lng") @db.Decimal(9, 6)
+  localDescricao String?     @map("local_descricao")
+  destinatario   String?
+  causa          String?
+  colaboradorId  String      @map("colaborador_id")
+  criadoEm       DateTime    @default(now()) @map("criado_em")
+
+  lote        LoteMudas   @relation(fields: [loteId], references: [id])
+  colaborador Colaborador @relation(fields: [colaboradorId], references: [id])
+
+  @@index([tipo], map: "destino_final_tipo_idx")
+  @@map("destino_final")
+}
+
+model Visita {
+  id            String   @id @default(uuid())
+  data          DateTime @db.Date
+  instituicao   String
+  numeroPessoas Int      @map("numero_pessoas")
+  observacao    String?
+  colaboradorId String   @map("colaborador_id")
+  criadoEm      DateTime @default(now()) @map("criado_em")
+
+  colaborador Colaborador @relation(fields: [colaboradorId], references: [id])
+
+  @@map("visita")
+}
+
+/// Uma linha por prefixo de etiqueta. Atualizada em transacao com
+/// INSERT ... ON CONFLICT DO UPDATE ... RETURNING (RN-01).
+model ContadorTag {
+  prefixo String @id
+  proximo Int    @default(1)
+
+  @@map("contador_tag")
+}

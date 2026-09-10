@@ -1,0 +1,80 @@
+/*
+ * As duas fontes da identidade são carregadas daqui.
+ *
+ * ONDE COLOCAR OS ARQUIVOS: web/public/fonts/PPRader-Bold.otf e
+ * web/public/fonts/TTTravels-Medium.otf. Enquanto eles não estiverem lá, o
+ * navegador ignora o @font-face e cai nos fallbacks Unbounded (display) e
+ * Outfit (corpo), carregados pelo Google Fonts no index.html.
+ *
+ * TT Travels tem um peso só (Medium): a hierarquia do texto vem de tamanho e
+ * cor, não de peso.
+ */
+@font-face {
+  font-family: "PP Rader";
+  src: url("/fonts/PPRader-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TT Travels";
+  src: url("/fonts/TTTravels-Medium.otf") format("opentype");
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-areia font-corpo text-16 text-tinta antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display tracking-titulo text-verdeEscuro;
+  }
+
+  /* Foco de teclado visível em tudo que é interativo — piso de acessibilidade. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-azul ring-offset-2 ring-offset-areia;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Rótulo do sistema: mono, maiúsculo, madeira. Usado em campo de formulário
+     e em sobretítulo de seção. */
+  .rotulo {
+    @apply font-mono text-12 uppercase tracking-rotulo text-madeira;
+  }
+
+  .rotulo-portal {
+    @apply font-mono text-12 uppercase tracking-rotuloPortal;
+  }
+
+  .etiqueta {
+    @apply font-mono text-14 tracking-rotulo;
+  }
+}

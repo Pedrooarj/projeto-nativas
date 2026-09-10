@@ -4,9 +4,9 @@
 >
 > | Integrante | Matrícula | GitHub | Papel |
 > |---|---|---|---|
-> | Pedro Otávio Medeiros de Araújo | `<matrícula>` | [@Pedrooarj](https://github.com/Pedrooarj) | Product Owner · API e modelagem |
-> | Levy Fernandes Pereira | `<matrícula>` | `@<usuário>` | Scrum Master · sistema do viveiro |
-> | Chistian Daniel Pereira da Silva | `<matrícula>` | `@<usuário>` | Desenvolvedor · portal e acervo |
+> | Pedro Otávio Medeiros de Araújo | 20230089892 | [@Pedrooarj](https://github.com/Pedrooarj) | Product Owner · API e modelagem |
+> | Levy Fernandes Pereira | 20230052613 | [@levyingx](https://github.com/levyingx) | Scrum Master · sistema do viveiro |
+> | Chistian Daniel Pereira da Silva | 20230053030 | [@ChisSilva](https://github.com/ChisSilva) | Desenvolvedor · portal e acervo |
 >
 > **Coorte de apresentação:** B (online) · **Sem integração** com outra disciplina.
 > **Proposta:** [docs/proposta.md](docs/proposta.md) · **Quadro:** *(link do GitHub Projects)* · **Vídeo da Sprint 0:** *(link)*

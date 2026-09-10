@@ -89,7 +89,7 @@ O backlog vive no **GitHub Projects** deste repositório, em quadro Kanban:
 
 **Quadro:** *(link do GitHub Projects — ver §7)*
 
-12 histórias escritas como resultado para o usuário, todas priorizadas (P1 essencial
+13 histórias escritas como resultado para o usuário, todas priorizadas (P1 essencial
 ao MVP, P2 importante, P3 desejável) e estimadas em pontos (escala Fibonacci). As
 cinco do topo, com critérios de aceitação:
 
@@ -101,8 +101,8 @@ cinco do topo, com critérios de aceitação:
 | P1 | Como voluntário, quero **registrar o destino final** do lote, para fechar o ciclo da muda | Plantio exige lat, lng e descrição; doação exige destinatário; operação atômica; só plantio entra no contador | 8 | 2 |
 | P1 | Como visitante, quero **ver os números do projeto** no portal, para confiar que ele entrega resultado | Quatro contadores calculados dos registros reais, sem digitação; cache de 5 min | 3 | 1 |
 
-As sete restantes (acervo, página da espécie, mapa, visitas, cadastro de espécies,
-saldo de sementes e importação por planilha) estão no quadro com prioridade e
+As oito restantes (conteúdo do portal, acervo, página da espécie, mapa, visitas,
+cadastro de espécies, saldo de sementes e importação por planilha) estão no quadro com prioridade e
 estimativa.
 
 ---
@@ -226,9 +226,9 @@ resultado rápido na tela, e é a trilha de quem está aprendendo.
 
 | Integrante | Matrícula | GitHub | Papel |
 |---|---|---|---|
-| Pedro Otávio Medeiros de Araújo | `<matrícula>` | [@Pedrooarj](https://github.com/Pedrooarj) | Product Owner · API e modelagem |
-| Levy Fernandes Pereira | `<matrícula>` | `@<usuário>` | Scrum Master · sistema do viveiro |
-| Chistian Daniel Pereira da Silva | `<matrícula>` | `@<usuário>` | Desenvolvedor · portal e acervo |
+| Pedro Otávio Medeiros de Araújo | 20230089892 | [@Pedrooarj](https://github.com/Pedrooarj) | Product Owner · API e modelagem |
+| Levy Fernandes Pereira | 20230052613 | [@levyingx](https://github.com/levyingx) | Scrum Master · sistema do viveiro |
+| Chistian Daniel Pereira da Silva | 20230053030 | [@ChisSilva](https://github.com/ChisSilva) | Desenvolvedor · portal e acervo |
 
 ---
 

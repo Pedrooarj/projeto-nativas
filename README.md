@@ -10,7 +10,7 @@
 >
 > **Coorte de apresentação:** B (online) · **Sem integração** com outra disciplina.
 > **Proposta:** [docs/proposta.md](docs/proposta.md) · **Quadro:** [GitHub Projects](https://github.com/users/Pedrooarj/projects/1) · **Vídeo da Sprint 0:** *(link)*
-> **Uso de IA:** [docs/uso-de-ia.md](docs/uso-de-ia.md)
+> **Protótipo (fonte da verdade visual):** [Claude Design](https://claude.ai/code/artifact/cb3adc0e-a497-46ff-adb0-380014f34c28) · **Uso de IA:** [docs/uso-de-ia.md](docs/uso-de-ia.md)
 
 Plataforma web do Projeto Nativas, projeto de extensão do CERES/UFRN em Caicó-RN
 que coleta sementes de espécies nativas da Caatinga, produz mudas em viveiro e

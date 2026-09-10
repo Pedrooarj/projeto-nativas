@@ -67,7 +67,7 @@ rodando em `localhost:5173` com os contadores.
   ação, responsável e prazo."
 - O quadro, apontando na tela: "Cinco colunas, do Backlog ao Pronto. WIP de 3 em
   progresso — um item por pessoa — e de 2 em revisão: fila de revisão cheia
-  significa revisar antes de pegar coisa nova. As 12 histórias já estão priorizadas
+  significa revisar antes de pegar coisa nova. As 13 histórias já estão priorizadas
   e estimadas."
 - Definição de Pronto, mostrando o checklist: "Um item só sai de revisão com o
   critério de aceite atendido, a regra validada na API, testado em tela de celular,

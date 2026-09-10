@@ -4,7 +4,7 @@
 >
 > | Integrante | Matrícula | GitHub | Papel |
 > |---|---|---|---|
-> | Pedro Otávio Medeiros de Araújo | 20230089892 | [@Pedrooarj](https://github.com/Pedrooarj) | Product Owner e Scrum Master · API e modelagem |
+> | Pedro Otávio Medeiros de Araújo | 20230089892 | [@Pedrooarj](https://github.com/Pedrooarj) | Product Owner e Scrum Master · API, banco e mapa público |
 > | Levy Fernandes Pereira | 20230052613 | [@levyingx](https://github.com/levyingx) | Desenvolvedor · sistema do viveiro |
 > | Chistian Daniel Pereira da Silva | 20230053030 | [@ChisSilva](https://github.com/ChisSilva) | Desenvolvedor · portal e acervo |
 >

@@ -87,7 +87,7 @@ restantes são variações do mesmo padrão de tela e de service.
 
 O backlog vive no **GitHub Projects** deste repositório, em quadro Kanban:
 
-**Quadro:** *(link do GitHub Projects — ver §7)*
+**Quadro:** <https://github.com/users/Pedrooarj/projects/1>
 
 13 histórias escritas como resultado para o usuário, todas priorizadas (P1 essencial
 ao MVP, P2 importante, P3 desejável) e estimadas em pontos (escala Fibonacci). As
@@ -239,7 +239,7 @@ resultado rápido na tela, e é a trilha de quem está aprendendo.
 
 - **Coorte de apresentação:** **B — online**, por Google Meet.
   Sprint 1: 28/09 · Sprint 2: 19/10 · Sprint 3: 16/11 · Entrega final: 07/12.
-- **Quadro no GitHub Projects:** *(link)*
+- **Quadro no GitHub Projects:** <https://github.com/users/Pedrooarj/projects/1>
 - **Vídeo da Sprint 0:** *(link)*
 - **Integração com outra disciplina:** não há. O Projeto Nativas é conduzido apenas em
   DIM0510 Processos de Software.

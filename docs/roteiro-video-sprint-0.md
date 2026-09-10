@@ -15,9 +15,9 @@ gravar evita estourar os 5 minutos.
 **Na tela:** README do repositório, seção da equipe.
 
 - "Somos a equipe Nativas: Pedro Otávio, Levy Fernandes e Chistian Daniel."
-- Papéis em uma frase cada: "Eu sou o Product Owner e cuido da API e da modelagem;
-  o Levy é o Scrum Master e cuida do sistema do viveiro; o Chistian cuida do portal
-  público e do acervo."
+- Papéis em uma frase cada: "Eu acumulo Product Owner e Scrum Master e cuido da API e da
+  modelagem; o Levy desenvolve o sistema do viveiro; o Chistian, o portal público e
+  o acervo."
 - "Apresentamos na coorte B, online. O repositório é público:
   github.com/Pedrooarj/projeto-nativas."
 
@@ -72,8 +72,9 @@ rodando em `localhost:5173` com os contadores.
 - Definição de Pronto, mostrando o checklist: "Um item só sai de revisão com o
   critério de aceite atendido, a regra validada na API, testado em tela de celular,
   CI verde e aprovação de outro integrante."
-- Colaboração: "Todo PR é revisado por quem não escreveu. Eu cuido do quadro e das
-  cerimônias como Scrum Master; o Pedro prioriza como PO."
+- Colaboração: "Todo PR é revisado por quem não escreveu. O Pedro acumula PO e
+  Scrum Master; para equilibrar, a retrospectiva é facilitada em rodízio por mim e
+  pelo Chistian."
 - Fechamento (uma frase): "Sprint 1 começa dia 14 com o fluxo de coleta e lote —
   obrigado!"
 

@@ -187,12 +187,15 @@ Um item só sai de "Em revisão" quando **todas** as condições valem:
 
 | Integrante | Papel | Trilha | Revisa PR de |
 |---|---|---|---|
-| Pedro Otávio | **Product Owner** · arquitetura e modelagem | API, banco, regras de negócio | Levy e Chistian |
-| Levy Fernandes | **Scrum Master** · desenvolvedor | Sistema do viveiro: quadro, formulários e CRUDs | Pedro e Chistian |
-| Chistian Daniel | Desenvolvedor · métricas do quadro | Portal público, acervo e teste de campo | Levy |
+| Pedro Otávio | **Product Owner e Scrum Master** · arquitetura e modelagem | API, banco, regras de negócio | Levy e Chistian |
+| Levy Fernandes | Desenvolvedor | Sistema do viveiro: quadro, formulários e CRUDs | Pedro e Chistian |
+| Chistian Daniel | Desenvolvedor | Portal público, acervo e teste de campo | Levy |
 
-Todo PR precisa de **uma aprovação de quem não o escreveu**. O PO decide prioridade;
-o Scrum Master cuida do quadro e das cerimônias.
+Todo PR precisa de **uma aprovação de quem não o escreveu**. O Pedro acumula PO e
+Scrum Master — decide prioridade e cuida do quadro e das cerimônias. Sabemos que o
+Scrum recomenda separar os dois papéis; numa equipe de três, a mitigação é a
+**retrospectiva ser facilitada em rodízio por Levy e Chistian**, para que quem
+prioriza o escopo não seja também quem julga o próprio processo.
 
 O quadro de acompanhamento é a peça mais difícil do frontend — mistura estado,
 chamada assíncrona, modal condicional e regra de transição — e por isso vai para quem
@@ -226,8 +229,8 @@ resultado rápido na tela, e é a trilha de quem está aprendendo.
 
 | Integrante | Matrícula | GitHub | Papel |
 |---|---|---|---|
-| Pedro Otávio Medeiros de Araújo | 20230089892 | [@Pedrooarj](https://github.com/Pedrooarj) | Product Owner · API e modelagem |
-| Levy Fernandes Pereira | 20230052613 | [@levyingx](https://github.com/levyingx) | Scrum Master · sistema do viveiro |
+| Pedro Otávio Medeiros de Araújo | 20230089892 | [@Pedrooarj](https://github.com/Pedrooarj) | Product Owner e Scrum Master · API e modelagem |
+| Levy Fernandes Pereira | 20230052613 | [@levyingx](https://github.com/levyingx) | Desenvolvedor · sistema do viveiro |
 | Chistian Daniel Pereira da Silva | 20230053030 | [@ChisSilva](https://github.com/ChisSilva) | Desenvolvedor · portal e acervo |
 
 ---

@@ -126,6 +126,44 @@ futuros" no relatório.
 - PostGIS e consultas espaciais, inscrição em mutirões, área de doação e cadastro
   de voluntários pela tela.
 
+### QR code na plaqueta da muda plantada
+
+Candidato número um da v1.1, registrado aqui para não se perder. A ideia veio de
+fora da equipe e é boa o bastante para merecer detalhe.
+
+**O que seria.** Cada muda levada a plantio definitivo recebe uma plaqueta com um
+QR code. Quem passa na frente da árvore aponta o celular e cai numa página do
+portal com a informação daquela planta.
+
+**Por que encaixa exatamente neste projeto.** A promessa do sistema é ligar a muda
+plantada à semente e à árvore matriz. Hoje essa ligação existe no banco, mas só a
+equipe vê. O QR code é o que a torna **visível para quem passa na calçada** — e
+transforma cada plantio num ponto de comunicação do projeto, sem custo recorrente.
+É a mesma tese do portal, levada ao mundo físico.
+
+**Duas versões possíveis, em ordem de custo.**
+
+| Versão | Para onde o QR aponta | O que precisa ser construído |
+|---|---|---|
+| Simples | `/acervo/:id` — a página da espécie | Nada além do acervo, que já é do MVP. O QR carrega só o id da espécie |
+| Completa | `/m/A-102` — a página daquela muda | Rota pública nova, endpoint `GET /publico/lotes/:tag` e uma tela mostrando espécie, data do plantio, coordenada da matriz de origem e quem produziu |
+
+A versão completa é a que entrega a rastreabilidade prometida, e ela é barata
+porque **reaproveita o que já existe**: a etiqueta única do lote (RN-01) já é
+imutável e serve como identificador público, e a procedência (RN-05) já garante
+que todo lote aponta para uma coleta com coordenada.
+
+**O que falta decidir com a coordenação.** Material e tamanho da plaqueta, se o
+QR fica em etiqueta colada ou gravada, e se a folha de impressão sai do sistema
+(uma tela "imprimir plaquetas" com os lotes de um plantio) ou é montada à parte.
+
+**Cuidado de privacidade.** A página pública da muda não pode expor o nome do
+colaborador que registrou — vale a mesma fronteira de hoje, em todo endpoint
+público (ver `docs/regras-de-negocio.md`, RN-06 e RN-07).
+
+**Dependências.** Precisa do acervo (história #7 e #8) e do destino final
+(história #6) prontos. Antes disso, não há o que o QR possa mostrar.
+
 ## Ordem de corte
 
 Se ficar claro que não cabe tudo no semestre, corte de cima para baixo. Decidido

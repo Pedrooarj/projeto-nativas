@@ -1,0 +1,23 @@
+# Quem revisa o quê — codifica a tabela de papéis da proposta (§5, Acordo de processo).
+# O GitHub pede a revisão automaticamente a quem é dono da área tocada pelo PR.
+#
+# Regra que o arquivo não expressa sozinho: o autor do PR nunca é o revisor dele.
+# Quando quem escreveu é o dono da área, a revisão passa para outro integrante.
+#
+# Só passa a valer depois que @levyingx e @ChisSilva aceitarem o convite de
+# colaborador do repositório.
+
+# Padrão: arquitetura, contrato de API e decisões de processo
+*                           @Pedrooarj
+
+# API, banco e regras de negócio
+/api/                       @Pedrooarj
+
+# Sistema do viveiro: quadro de lotes e formulários
+/web/src/rotas/sistema/     @levyingx
+
+# Portal público e acervo
+/web/src/rotas/publicas/    @ChisSilva
+
+# Componentes de interface compartilhados
+/web/src/componentes/       @levyingx

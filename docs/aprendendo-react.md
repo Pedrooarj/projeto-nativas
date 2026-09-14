@@ -1,7 +1,7 @@
 # Aprendendo React neste projeto
 
 Para quem está começando do zero. Não é um curso de React: é um guia do **código
-que já existe aqui**, na ordem em que ele faz sentido, com sete tarefas de
+que já existe aqui**, na ordem em que ele faz sentido, com oito tarefas de
 dificuldade crescente no fim.
 
 Leia com o projeto aberto ao lado. Todo arquivo citado existe de verdade — abra
@@ -207,7 +207,7 @@ o modelo a copiar quando você for construir uma nova.
 
 ---
 
-## 4. As sete tarefas
+## 4. As oito tarefas
 
 Em ordem. Cada uma diz em qual arquivo mexer. Faça uma por PR.
 
@@ -272,7 +272,37 @@ só aparece quando `menuAberto` for verdadeiro. O fundo do menu mobile é
 
 **Pronto quando:** abre, fecha, e ao clicar num link ele fecha e rola até a seção.
 
-### Tarefa 6 — Card de métrica com dados fixos
+### Tarefa 6 — O acervo com busca e filtro
+
+**Arquivo:** `web/src/rotas/publicas/Acervo.tsx`, mais `web/src/lib/api.ts`.
+
+Aqui acaba o aquecimento. Esta é a **história [#7](https://github.com/Pedrooarj/projeto-nativas/issues/7)
+do backlog** — uma feature de verdade, com prioridade P1, que vai para o portal
+público. Ela junta tudo o que você viu até agora: estado, lista com `.map()` e
+chamada à API.
+
+O que a tela precisa fazer:
+
+1. Buscar as espécies quando a página abrir (`useEffect`)
+2. Mostrar cada uma num cartão: foto principal, nome comum e nome científico
+3. Ter um campo de busca por nome que filtra a lista
+4. Ter um filtro por família botânica
+5. Mostrar "carregando" enquanto espera e uma mensagem decente quando não achar nada
+
+**Você não está inventando isso do zero.** Abra
+`web/src/rotas/sistema/Especies.tsx`: ele faz exatamente esse ciclo — busca com
+espera de 300 ms, lista, estado vazio, tratamento de erro — e está comentado como
+tela de referência. Copie o padrão e adapte para o visual público.
+
+Se o endpoint `GET /publico/especies` ainda não estiver pronto quando você chegar
+aqui, fale no grupo: dá para trabalhar com uma lista fixa no arquivo e trocar pela
+chamada real depois, sem refazer o resto.
+
+**Pronto quando:** a lista carrega da API, a busca filtra enquanto se digita, o
+filtro por família funciona junto com a busca, e a tela se comporta bem no celular
+com estado vazio e de carregamento.
+
+### Tarefa 7 — Card de métrica com dados fixos
 
 **Arquivo:** `web/src/rotas/publicas/EspeciePublica.tsx`.
 
@@ -285,7 +315,7 @@ Use `Contadores`, em `Portal.tsx`, como referência visual.
 **Pronto quando:** os quatro cartões aparecem, com número grande em `font-display`
 e rótulo em mono, e funcionam empilhados no celular.
 
-### Tarefa 7 — Ligar os contadores no endpoint real
+### Tarefa 8 — Ligar os números no endpoint real
 
 **Arquivo:** o mesmo `web/src/rotas/publicas/EspeciePublica.tsx`, mais
 `web/src/lib/api.ts`.
@@ -302,10 +332,6 @@ verdade:
 
 **Pronto quando:** os números da página vêm da API, a tela não quebra enquanto
 carrega e mostra uma mensagem clara se a API estiver fora do ar.
-
-> Se o endpoint ainda não estiver pronto quando você chegar aqui, não fique
-> parado: o mesmo exercício vale para a lista do acervo em
-> `web/src/rotas/publicas/Acervo.tsx`.
 
 ---
 

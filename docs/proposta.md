@@ -162,10 +162,10 @@ segunda que abre a sprint; **fechamento** na sexta da entrega, às 23:59.
 
 | Cerimônia | Quando | Duração | Formato |
 |---|---|---|---|
-| Sprint Planning | segunda de abertura | 60 min | Google Meet, os três |
-| Daily assíncrona | todo dia útil, até 10h | 5 min | grupo no WhatsApp: fiz / farei / travei |
-| Weekly | quarta, após a aula | 30 min | presencial ou Meet |
-| Review + Retrospectiva | sexta da entrega | 60 min | Meet; a retro vira `docs/retrospectiva-NN.md` com ações, responsável e prazo |
+| Sprint Planning | Segunda de abertura | 60 min | Google Meet, os três |
+| Daily assíncrona | Todo dia útil, até 10h | 5 min | Grupo no WhatsApp: fiz / farei / travei |
+| Weekly | Segunda às 18h | 30 min | Presencial ou Google Meet |
+| Review + Retrospectiva | Sexta da entrega | 60 min | Google Meet; a retro vira `docs/retrospectiva-NN.md` com ações, responsável e prazo |
 
 **Regra de desbloqueio:** travou 40 minutos no mesmo erro, manda no grupo com o erro
 inteiro e o que já tentou. Não existe pergunta boba; existe pessoa parada dois dias.

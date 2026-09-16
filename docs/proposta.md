@@ -249,6 +249,6 @@ apertar o PO puxa a peça mais complexa para si em vez de deixar alguém travado
 - **Coorte de apresentação:** **B — online**, por Google Meet.
   Sprint 1: 28/09 · Sprint 2: 19/10 · Sprint 3: 16/11 · Entrega final: 07/12.
 - **Quadro no GitHub Projects:** <https://github.com/users/Pedrooarj/projects/1/views/1>
-- **Vídeo da Sprint 0:** *(link)*
+- **Vídeo da Sprint 0:** *<https://youtu.be/6P3KEEPGU-g>*
 - **Integração com outra disciplina:** não há. O Projeto Nativas é conduzido apenas em
   DIM0510 Processos de Software.

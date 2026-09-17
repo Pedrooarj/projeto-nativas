@@ -30,7 +30,7 @@ portal, sem planilha intermediária e sem ninguém atualizando o site à mão.
 
 ## Pré-requisitos
 
-| Ferramenta | Versão | Para quê |
+| Ferramenta | Versão | Finalidade |
 |---|---|---|
 | Node.js | 20 ou mais novo | rodar a API e o front |
 | Docker Desktop | qualquer versão atual | subir o Postgres e o Adminer |

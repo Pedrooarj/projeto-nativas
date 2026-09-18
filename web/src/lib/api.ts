@@ -95,6 +95,11 @@ export type Colaborador = {
   nome: string;
 };
 
+export type Substrato = {
+  id: string;
+  nome: string;
+};
+
 export type Especie = {
   id: string;
   nomeComum: string;
@@ -138,6 +143,10 @@ export function buscarMetricas() {
 
 export function listarColaboradores() {
   return requisitar<Colaborador[]>("/colaboradores");
+}
+
+export function listarSubstratos() {
+  return requisitar<Substrato[]>("/substratos");
 }
 
 export function listarEspecies(busca?: string) {

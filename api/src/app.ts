@@ -5,6 +5,7 @@ import { authRoutes } from "./modules/auth/auth.routes";
 import { colaboradoresRoutes } from "./modules/colaboradores/colaboradores.routes";
 import { especiesRoutes } from "./modules/especies/especies.routes";
 import { publicoRoutes } from "./modules/publico/publico.routes";
+import { substratosRoutes } from "./modules/substratos/substratos.routes";
 import { env } from "./shared/env";
 import { naoEncontrado } from "./shared/erros";
 import { tratarErros } from "./shared/tratarErros";
@@ -23,6 +24,7 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/colaboradores", colaboradoresRoutes);
 app.use("/api/v1/especies", especiesRoutes);
 app.use("/api/v1/publico", publicoRoutes);
+app.use("/api/v1/substratos", substratosRoutes);
 
 app.use((req, _res, next) => {
   next(naoEncontrado(`Rota ${req.method} ${req.path} não existe nesta API.`));

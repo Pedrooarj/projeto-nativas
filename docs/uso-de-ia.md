@@ -20,6 +20,7 @@ ser questionado sobre qualquer trecho nas apresentações.
 |---|---|---|---|
 | 0 | Claude Code (Opus) | Geração do esqueleto do repositório a partir da documentação de concepção escrita pela equipe (`referencia/`): estrutura `api/` + `web/`, schema Prisma, seed, endpoints de auth/espécies/métricas, componentes de UI, design system, testes de etiqueta e contadores, e primeira versão dos docs. Todo o material foi revisado pelo PO; as regras de negócio e decisões técnicas são anteriores à geração e estão em `referencia/` | Pedro |
 | 0 | Claude Code (Opus) | Organização dos artefatos da Sprint 0 (proposta, backlog, acordo de processo, roteiro do vídeo) a partir do guia da disciplina | Pedro |
+| 1 | Claude Code (Fable 5.1) | Leitura da rubrica da Sprint 1 contra o estado do repositório (PRs sem aprovação formal, commits direto na `main`), criação das tarefas de processo S1-T1 a S1-T5 e da proteção da `main`. Na API, `GET /substratos` (#26) e `POST /lotes` (#27), com os testes escritos e commitados antes da implementação. As decisões de contrato — o lote herda a espécie da coleta e a coleta fica travada na transação para o saldo valer sob concorrência — foram propostas pela ferramenta e aceitas pelo PO, que responde por elas | Pedro |
 
 > Os fluxos centrais do produto — coletas, lotes, quadro, transições, destino final,
 > acervo público e mapa — estão **reservados à equipe** e serão implementados pelos

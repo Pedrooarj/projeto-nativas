@@ -53,6 +53,7 @@ endpoints:
 GET    /health
 POST   /api/v1/auth/login          GET  /api/v1/auth/eu
 GET    /api/v1/colaboradores       GET  /api/v1/substratos
+GET    /api/v1/coletas             POST /api/v1/coletas
 GET    /api/v1/especies            GET  /api/v1/especies/:id
 POST   /api/v1/especies            PATCH /api/v1/especies/:id     (admin)
 POST   /api/v1/lotes
@@ -84,7 +85,6 @@ busca e formulário em modal. As demais são placeholders identificados.
 
 | Endpoint | Regra que governa |
 |---|---|
-| `GET /coletas` · `POST /coletas` | RN-05, RN-06 |
 | `GET /lotes/quadro` · `GET /lotes/:id` | RN-03 |
 | `POST /lotes/:id/transicao` | RN-03 |
 | `POST /lotes/:id/destino` | RN-04 |

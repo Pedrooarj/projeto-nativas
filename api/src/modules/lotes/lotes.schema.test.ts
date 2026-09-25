@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { criarLoteSchema, hojeIso } from "./lotes.schema";
+import { hojeIso } from "../../shared/datas";
+import { criarLoteSchema } from "./lotes.schema";
 
 // Aqui ninguém consulta o banco: o schema só olha a forma dos dados.
 // O id tem o formato que o Prisma gera (uuid v4).

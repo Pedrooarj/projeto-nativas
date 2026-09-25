@@ -3,7 +3,9 @@ import express from "express";
 import helmet from "helmet";
 import { authRoutes } from "./modules/auth/auth.routes";
 import { colaboradoresRoutes } from "./modules/colaboradores/colaboradores.routes";
+import { coletasRoutes } from "./modules/coletas/coletas.routes";
 import { especiesRoutes } from "./modules/especies/especies.routes";
+import { lotesRoutes } from "./modules/lotes/lotes.routes";
 import { publicoRoutes } from "./modules/publico/publico.routes";
 import { substratosRoutes } from "./modules/substratos/substratos.routes";
 import { env } from "./shared/env";
@@ -22,7 +24,9 @@ app.get("/health", (_req, res) => {
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/colaboradores", colaboradoresRoutes);
+app.use("/api/v1/coletas", coletasRoutes);
 app.use("/api/v1/especies", especiesRoutes);
+app.use("/api/v1/lotes", lotesRoutes);
 app.use("/api/v1/publico", publicoRoutes);
 app.use("/api/v1/substratos", substratosRoutes);
 

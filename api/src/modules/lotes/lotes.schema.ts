@@ -1,17 +1,6 @@
 import { MetodoQuebra, SetorViveiro } from "@prisma/client";
 import { z } from "zod";
-
-/** Hoje no formato AAAA-MM-DD, no fuso do servidor. */
-export function hojeIso(): string {
-  const agora = new Date();
-  const local = new Date(agora.getTime() - agora.getTimezoneOffset() * 60_000);
-  return local.toISOString().slice(0, 10);
-}
-
-const dataIso = z
-  .string({ required_error: "Informe a data do plantio." })
-  .regex(/^\d{4}-\d{2}-\d{2}$/, "Use a data no formato AAAA-MM-DD.")
-  .refine((data) => data <= hojeIso(), "A data do plantio não pode ser no futuro.");
+import { dataNaoFutura, hojeIso } from "../../shared/datas";
 
 // O corpo não tem especieId de propósito: a espécie do lote é a da coleta
 // (RN-05) e o service copia de lá. A etiqueta também não vem do cliente (RN-01).
@@ -32,7 +21,7 @@ export const criarLoteSchema = z
       .int("A contagem de mudas vivas precisa ser um número inteiro.")
       .nonnegative("A contagem de mudas vivas não pode ser negativa.")
       .optional(),
-    dataPlantio: dataIso.default(hojeIso),
+    dataPlantio: dataNaoFutura("do plantio").default(hojeIso),
     // RN-03: o lote nasce na etapa 1, e a etapa 1 só aceita estes dois.
     tipoRecipiente: z.enum(["TUBETE", "SEMENTEIRA"], {
       errorMap: () => ({ message: "Na etapa 1 o recipiente é tubete ou sementeira." }),

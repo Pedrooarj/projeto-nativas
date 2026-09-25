@@ -100,6 +100,34 @@ export type Substrato = {
   nome: string;
 };
 
+/** Uma coleta do banco de sementes. `saldo` é o que ainda pode virar lote (RN-05). */
+export type Coleta = {
+  id: string;
+  especieId: string;
+  matrizLat: number;
+  matrizLng: number;
+  qtdSementes: number;
+  dataColeta: string;
+  localDescricao: string | null;
+  fotoUrl: string | null;
+  colaboradorId: string;
+  criadoEm: string;
+  especie: { nomeComum: string; nomeCientifico: string };
+  colaborador: { nome: string };
+  sementesUsadas: number;
+  saldo: number;
+};
+
+export type DadosDeColeta = {
+  especieId: string;
+  qtdSementes: number;
+  dataColeta?: string;
+  matrizLat: number;
+  matrizLng: number;
+  localDescricao?: string;
+  colaboradorId: string;
+};
+
 export type Especie = {
   id: string;
   nomeComum: string;
@@ -183,6 +211,16 @@ export function listarColaboradores() {
 
 export function listarSubstratos() {
   return requisitar<Substrato[]>("/substratos");
+}
+
+/** Sem filtro lista o banco de sementes inteiro; com `especieId`, só as coletas daquela espécie. */
+export function listarColetas(especieId?: string) {
+  const consulta = especieId ? `?especieId=${encodeURIComponent(especieId)}` : "";
+  return requisitar<Coleta[]>(`/coletas${consulta}`);
+}
+
+export function criarColeta(dados: DadosDeColeta) {
+  return requisitar<Coleta>("/coletas", { metodo: "POST", corpo: dados });
 }
 
 export function listarEspecies(busca?: string) {

@@ -1,14 +1,9 @@
 import { Estagio } from "@prisma/client";
-import { conflito, invalido } from "../../shared/erros";
+import { campoInvalido, conflito } from "../../shared/erros";
 import { gerarTag } from "../../shared/gerarTag";
 import { prisma } from "../../shared/prisma";
 import { limparCacheMetricas } from "../publico/publico.service";
 import type { DadosNovoLote } from "./lotes.schema";
-
-/** Id que veio no corpo e não aponta para um registro válido: 422 apontando o campo. */
-function campoInvalido(campo: string, mensagem: string) {
-  return invalido("Alguns campos precisam ser corrigidos.", [{ campo, mensagem }]);
-}
 
 /**
  * Cadastro do lote: RN-01 (etiqueta), RN-05 (procedência e saldo) e RN-06

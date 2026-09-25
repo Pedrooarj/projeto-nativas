@@ -129,8 +129,10 @@ coordenada é pior que não registrada, porque parece completa.
 
 ## RN-05 — Procedência
 
-**Implementada no cadastro do lote** em `api/src/modules/lotes/lotes.service.ts`,
-com teste em `lotes.service.test.ts`. O lado da coleta é `POST /coletas`.
+**Implementada** em `api/src/modules/coletas/coletas.service.ts` e
+`api/src/modules/lotes/lotes.service.ts`, com teste ao lado de cada um.
+`POST /coletas` exige a coordenada da matriz; `GET /coletas` devolve
+`sementesUsadas` e `saldo` por coleta, contando só os lotes não excluídos.
 
 - Todo lote aponta para uma coleta, e o campo é **obrigatório**. Sem isso a
   rastreabilidade prometida no portal não existe.

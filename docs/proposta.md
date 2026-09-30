@@ -222,15 +222,39 @@ apertar o PO puxa a peça mais complexa para si em vez de deixar alguém travado
 | Decisões e registros | `docs/` no próprio repositório |
 | Inspeção do banco | Adminer e Prisma Studio |
 
-### WIP limits
+### Quadro: políticas das colunas e limites de WIP
 
-| Coluna | Limite | Por quê |
+Cada coluna do quadro tem, na própria descrição, o que precisa ser verdade para um
+cartão entrar e sair dela. É o que transforma a lista em sistema puxado.
+
+| Coluna | WIP | Entra quando | Sai quando |
+|---|---|---|---|
+| Backlog | — | história ou tarefa com critério de aceite escrito, estimada e priorizada (P1/P2/P3) | é escolhida no planning |
+| Sprint Backlog | 8 | no planning, com dono e campo Sprint preenchido; história grande já quebrada em cartões de poucos dias | o dono começa e puxa para Em progresso |
+| Em progresso | **3**, um por pessoa | há vaga e o dono não tem outro cartão aqui; campo Início preenchido | PR aberto com `Closes #NN` e CI verde |
+| Em revisão | **2** | PR aberto, CI verde, revisor pedido | aprovado por outro integrante (Approve, não só merge) em até 24h e mesclado na `main` |
+| Pronto | — | PR mesclado, Definição de Pronto atendida, campo Fim preenchido e cartão vinculado ao PR | não sai |
+
+**Coluna cheia:** ninguém puxa trabalho novo; ajuda-se a terminar o que está lá. Em
+revisão cheia significa revisar antes de começar outro cartão.
+
+**Métricas de fluxo.** Os campos Início e Fim do quadro são preenchidos ao entrar em
+Em progresso e ao chegar em Pronto. Ao fim de cada sprint calculamos lead time
+(criação do cartão até Pronto), cycle time (Início até Fim), throughput por semana e
+WIP médio, e levamos os números para a retrospectiva. Enquanto o quadro não tiver
+histórico suficiente, as datas de abertura e integração dos PRs servem de
+aproximação.
+
+### Práticas XP
+
+Quatro práticas, cada uma com um rastro verificável no repositório:
+
+| Prática | Como aplicamos | Evidência |
 |---|---|---|
-| Backlog | — | — |
-| Sprint Backlog | 8 itens | o que cabe em três semanas com três pessoas |
-| Em progresso | **3** | um item por pessoa; ninguém começa o segundo antes de fechar o primeiro |
-| Em revisão | **2** | fila cheia significa revisar antes de pegar item novo |
-| Pronto | — | — |
+| TDD | Nos PRs da API, o teste é escrito e commitado antes da implementação | histórico do PR: commit `test(...)` seguido de `feat(...)` |
+| Revisão de código | Todo PR é aprovado por quem não o escreveu, em até 24h, com Approve; a `main` só aceita PR aprovado e com CI verde | aprovações nos PRs; proteção da `main` |
+| Integração contínua | CI roda tipos, testes e build em todo push e PR; branches curtas, um PR por tarefa | histórico do Actions; tamanho dos PRs |
+| Programação em par | Levy e Chistian fazem em par pelo menos uma peça por sprint da trilha de quem está aprendendo | commits com `Co-authored-by:` |
 
 ---
 

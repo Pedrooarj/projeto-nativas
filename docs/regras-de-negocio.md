@@ -16,7 +16,7 @@ Os códigos de erro seguem o padrão da API: `401` sem token, `403` sem permiss�
 ## RN-01 — Etiqueta única do lote
 
 **Implementada** em `api/src/shared/gerarTag.ts`, com teste em
-`gerarTag.test.ts`. O endpoint que a usa ainda não existe.
+`gerarTag.test.ts`, e usada por `POST /lotes` (`api/src/modules/lotes/lotes.service.ts`).
 
 Formato `<PREFIXO>-<SEQUENCIAL>`: `A-102` (Angico), `M-045` (Mandacaru).
 
@@ -33,8 +33,8 @@ Duas camadas: a tabela `contador_tag`, com uma linha por prefixo, atualizada em
 transação com `INSERT ... ON CONFLICT DO UPDATE ... RETURNING`; e a constraint
 `UNIQUE` em `lote_mudas.tag_unica` como rede de segurança.
 
-Quem construir `POST /lotes` chama `gerarTag(nomeComum, tx)` passando a transação
-do cadastro, para que etiqueta e lote nasçam juntos ou não nasçam.
+`POST /lotes` chama `gerarTag(nomeComum, tx)` passando a transação do cadastro,
+para que etiqueta e lote nasçam juntos ou não nasçam.
 
 ---
 
@@ -129,11 +129,22 @@ coordenada é pior que não registrada, porque parece completa.
 
 ## RN-05 — Procedência
 
+**Implementada** em `api/src/modules/coletas/coletas.service.ts` e
+`api/src/modules/lotes/lotes.service.ts`, com teste ao lado de cada um.
+`POST /coletas` exige a coordenada da matriz; `GET /coletas` devolve
+`sementesUsadas` e `saldo` por coleta, contando só os lotes não excluídos.
+
 - Todo lote aponta para uma coleta, e o campo é **obrigatório**. Sem isso a
   rastreabilidade prometida no portal não existe.
-- A espécie do lote precisa ser **a mesma da coleta**.
+- A espécie do lote é **a mesma da coleta**, por construção: `POST /lotes` não
+  aceita `especieId`, copia da coleta.
 - A soma de sementes usada em lotes de uma coleta **não pode passar** a
-  quantidade coletada. Passar devolve `409` com o saldo disponível na mensagem.
+  quantidade coletada. Passar devolve `409` com o saldo disponível na mensagem e
+  em `detalhes.saldo`. A conferência roda dentro da transação do cadastro com a
+  linha da coleta travada (`SELECT ... FOR UPDATE`), para dois cadastros
+  simultâneos não passarem do saldo juntos.
+- Id de coleta, colaborador ou substrato que não existe ou está inativo devolve
+  `422` apontando o campo.
 - Toda coleta registra a coordenada da matriz — é o que permite voltar à mesma
   árvore no ano seguinte. As matrizes não têm código próprio: são identificadas
   pela coordenada e pela descrição do local.

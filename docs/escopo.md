@@ -53,15 +53,18 @@ endpoints:
 GET    /health
 POST   /api/v1/auth/login          GET  /api/v1/auth/eu
 GET    /api/v1/colaboradores       GET  /api/v1/substratos
+GET    /api/v1/coletas             POST /api/v1/coletas
 GET    /api/v1/especies            GET  /api/v1/especies/:id
 POST   /api/v1/especies            PATCH /api/v1/especies/:id     (admin)
+POST   /api/v1/lotes
 GET    /api/v1/publico/metricas
 ```
 
 **Utilitário de etiqueta.** `api/src/shared/gerarTag.ts` implementa a RN-01
 inteira, com o controle de concorrência e teste — inclusive o de duas chamadas
-simultâneas com o mesmo prefixo. O endpoint que usa isso ainda não existe: quem
-construir `POST /lotes` chama essa função dentro da transação do cadastro.
+simultâneas com o mesmo prefixo. `POST /lotes` chama essa função dentro da
+transação do cadastro: etiqueta, lote e a primeira linha do histórico nascem
+juntos ou não nascem.
 
 **Front.** Estrutura de rotas pública e protegida, contexto de autenticação com o
 token no localStorage, cliente de API tipado, os oito componentes de interface
@@ -82,8 +85,6 @@ busca e formulário em modal. As demais são placeholders identificados.
 
 | Endpoint | Regra que governa |
 |---|---|
-| `GET /coletas` · `POST /coletas` | RN-05, RN-06 |
-| `POST /lotes` | RN-01, RN-02, RN-05, RN-06 |
 | `GET /lotes/quadro` · `GET /lotes/:id` | RN-03 |
 | `POST /lotes/:id/transicao` | RN-03 |
 | `POST /lotes/:id/destino` | RN-04 |

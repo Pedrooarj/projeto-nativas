@@ -1,4 +1,4 @@
-import type { Papel } from "./dominio";
+import type { Estagio, MetodoQuebra, Papel, SetorViveiro, TipoRecipiente } from "./dominio";
 
 /**
  * Único lugar do front que fala com a API.
@@ -100,6 +100,34 @@ export type Substrato = {
   nome: string;
 };
 
+/** Uma coleta do banco de sementes. `saldo` é o que ainda pode virar lote (RN-05). */
+export type Coleta = {
+  id: string;
+  especieId: string;
+  matrizLat: number;
+  matrizLng: number;
+  qtdSementes: number;
+  dataColeta: string;
+  localDescricao: string | null;
+  fotoUrl: string | null;
+  colaboradorId: string;
+  criadoEm: string;
+  especie: { nomeComum: string; nomeCientifico: string };
+  colaborador: { nome: string };
+  sementesUsadas: number;
+  saldo: number;
+};
+
+export type DadosDeColeta = {
+  especieId: string;
+  qtdSementes: number;
+  dataColeta?: string;
+  matrizLat: number;
+  matrizLng: number;
+  localDescricao?: string;
+  colaboradorId: string;
+};
+
 export type Especie = {
   id: string;
   nomeComum: string;
@@ -126,6 +154,42 @@ export type DadosDeEspecie = {
   usos?: string[];
 };
 
+export type Lote = {
+  id: string;
+  tagUnica: string;
+  especieId: string;
+  coletaId: string;
+  dataPlantio: string;
+  qtdSementes: number;
+  qtdMudasVivas: number | null;
+  tipoRecipiente: TipoRecipiente;
+  tratamentoSemente: MetodoQuebra;
+  substratoId: string;
+  setor: SetorViveiro;
+  identificacaoFina: string | null;
+  fotoUrl: string | null;
+  estagioAtual: Estagio;
+  colaboradorId: string;
+  criadoEm: string;
+  especie: { nomeComum: string; nomeCientifico: string };
+  colaborador: { nome: string };
+  substrato: { nome: string };
+};
+
+/** Corpo de POST /lotes. A espécie não vai: a API copia da coleta (RN-05). */
+export type DadosDeLote = {
+  coletaId: string;
+  qtdSementes: number;
+  dataPlantio?: string;
+  tipoRecipiente: "TUBETE" | "SEMENTEIRA";
+  tratamentoSemente: MetodoQuebra;
+  substratoId: string;
+  setor: SetorViveiro;
+  identificacaoFina?: string;
+  qtdMudasVivas?: number;
+  colaboradorId: string;
+};
+
 export function entrar(email: string, senha: string) {
   return requisitar<{ token: string; usuario: Usuario }>("/auth/login", {
     metodo: "POST",
@@ -149,6 +213,16 @@ export function listarSubstratos() {
   return requisitar<Substrato[]>("/substratos");
 }
 
+/** Sem filtro lista o banco de sementes inteiro; com `especieId`, só as coletas daquela espécie. */
+export function listarColetas(especieId?: string) {
+  const consulta = especieId ? `?especieId=${encodeURIComponent(especieId)}` : "";
+  return requisitar<Coleta[]>(`/coletas${consulta}`);
+}
+
+export function criarColeta(dados: DadosDeColeta) {
+  return requisitar<Coleta>("/coletas", { metodo: "POST", corpo: dados });
+}
+
 export function listarEspecies(busca?: string) {
   const consulta = busca ? `?busca=${encodeURIComponent(busca)}` : "";
   return requisitar<Especie[]>(`/especies${consulta}`);
@@ -164,4 +238,12 @@ export function criarEspecie(dados: DadosDeEspecie) {
 
 export function atualizarEspecie(id: string, dados: Partial<DadosDeEspecie>) {
   return requisitar<Especie>(`/especies/${id}`, { metodo: "PATCH", corpo: dados });
+}
+
+/**
+ * Erro 409 vem com o saldo da coleta em `detalhes` (RN-05); 422 vem com a lista
+ * campo a campo, no mesmo formato da tela de espécies.
+ */
+export function criarLote(dados: DadosDeLote) {
+  return requisitar<Lote>("/lotes", { metodo: "POST", corpo: dados });
 }

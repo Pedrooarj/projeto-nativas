@@ -35,3 +35,11 @@ export function conflito(mensagem: string, detalhes?: unknown) {
 export function invalido(mensagem: string, detalhes?: unknown) {
   return new ErroApi(422, "validacao", mensagem, detalhes);
 }
+
+/**
+ * Id que veio no corpo e não aponta para um registro válido (não existe, está
+ * inativo ou excluído): 422 apontando o campo, no mesmo formato do Zod.
+ */
+export function campoInvalido(campo: string, mensagem: string) {
+  return invalido("Alguns campos precisam ser corrigidos.", [{ campo, mensagem }]);
+}

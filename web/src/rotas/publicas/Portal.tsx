@@ -119,12 +119,29 @@ function Inicio() {
 
 function Sobre() {
   return (
-    <SecaoPlaceholder
-      id="sobre"
-      sobretitulo="Sobre"
-      titulo="Quem faz o Projeto Nativas"
-      descricao="Seção reservada para a TAREFA 2 de docs/aprendendo-react.md: montar aqui o texto sobre o projeto, a UFRN, o CERES, a EMCM e os voluntários, usando classes do Tailwind."
-    />
+    // <SecaoPlaceholder
+    //   id="sobre"
+    //   sobretitulo="Sobre"
+    //   titulo="Quem faz o Projeto Nativas"
+    //   descricao="Seção reservada para a TAREFA 2 de docs/aprendendo-react.md: montar aqui o texto sobre o projeto, a UFRN, o CERES, a EMCM e os voluntários, usando classes do Tailwind."
+    // />
+    <section id="sobre" className="mx-auto max-w-conteudo px-5 py-20">
+      <p className="rotulo-portal text-madeira">Sobre</p>
+      <h2 className="mt-4 text-subtitulo">Quem faz o Projeto Nativas</h2>
+
+      <div className="mt-4 max-w-[60ch] space-y-4 text-17 text-tintaCard">
+        <p>
+          O Projeto Nativas cultiva e documenta espécies da Caatinga. Coletamos sementes, produzimos mudas e fazemos plantios, e registramos cada etapa para que o trabalho com cada espécie fique acessível a quem quiser consultar.
+        </p>
+        <p>
+          O projeto nasceu na Universidade Federal do Rio Grande do Norte (UFRN) e é desenvolvido no Centro de Ensino Superior do Seridó (CERES), em Caicó, com apoio da EMCM.
+        </p>
+        <p>
+          Quem faz tudo isso acontecer são os voluntários: estudantes, professores e pessoas da comunidade que dedicam seu tempo às coletas, ao viveiro e aos plantios.
+        </p>
+      </div>
+
+    </section>
   );
 }
 

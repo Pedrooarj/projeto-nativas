@@ -37,6 +37,8 @@ export function Portal() {
 }
 
 function Cabecalho() {
+  const [menuAberto, setMenuAberto] = useState(false);
+
   return (
     <header className="sticky top-0 z-40 border-b border-borda bg-areia/95 backdrop-blur">
       <div className="mx-auto flex max-w-conteudo items-center justify-between gap-4 px-5 py-4">
@@ -67,7 +69,10 @@ function Cabecalho() {
               mobile de verdade, com useState. Hoje ele não abre nada. */}
           <button
             type="button"
-            aria-label="Abrir menu"
+            aria-label={menuAberto ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={menuAberto}
+            aria-controls="menu-mobile"
+            onClick={() => setMenuAberto(!menuAberto)}
             className="min-h-toque min-w-toque rounded-botao border border-bordaForte text-verdeEscuro sistema:hidden"
           >
             ≡
@@ -78,6 +83,28 @@ function Cabecalho() {
           </Link>
         </div>
       </div>
+
+      {menuAberto && (
+        <nav
+          id = "menu-mobile"
+          aria-label = "Seções do portal"
+          className="bg-verdeTinta px-5 py-4 sistema:hidden"
+        >
+          <ul className="mx-auto flex max-w-conteudo flex-col">
+            {ancoras.map((ancora) => (
+              <li key = {ancora.id}>
+                <a href={`#${ancora.id}`} 
+                onClick={() => setMenuAberto(false)} 
+                className="block py-3 text-16 text-areia hover:underline"
+                >
+                  {ancora.texto}
+                </a>
+              </li>
+            ))}
+          </ul>
+          
+        </nav>
+      )}
     </header>
   );
 }

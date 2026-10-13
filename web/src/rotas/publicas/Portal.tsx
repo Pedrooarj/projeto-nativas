@@ -5,6 +5,7 @@ import "leaflet/dist/leaflet.css";
 import { buscarMetricas, ErroDaApi, type Metricas } from "../../lib/api";
 import { Botao } from "../../componentes/ui/Botao";
 import { Card } from "../../componentes/ui/Card";
+import { CardAcao } from "../../componentes/ui/CardAcao";
 
 const CAICO: [number, number] = [-6.4578, -37.0977];
 
@@ -146,13 +147,57 @@ function Sobre() {
 }
 
 function Acoes() {
+  const acoes = [
+    {
+      titulo: "Coleta",
+      descricao: "Reunimos sementes de espécies nativas em áreas de Caatinga, com registro do local e da data.",
+    },
+    {
+      titulo: "Produção de mudas",
+      descricao: "As sementes viram mudas no viveiro, acompanhadas até ficarem prontas para o plantio.",
+    },
+    {
+      titulo: "Manejo",
+      descricao: "Cuidamos das mudas e das áreas plantadas com rega, limpeza e acompanhamento do crescimento.",
+    },
+    {
+      titulo: "Compostagem",
+      descricao: "Transformamos resíduos orgânicos em adubo para nutrir as mudas e o solo.",
+    },
+    {
+      titulo: "Mutirões",
+      descricao: "Encontros abertos em que voluntários se juntam para trabalhar no viveiro e no campo.",
+    },
+    {
+      titulo: "Plantios",
+      descricao: "Levamos as mudas para o local definitivo e registramos cada plantio realizado.",
+    },
+    {
+      titulo: "Visitas",
+      descricao: "Recebemos escolas e grupos para conhecer o viveiro e as espécies da região.",
+    },
+  ]
+  
+  
   return (
-    <SecaoPlaceholder
-      id="acoes"
-      sobretitulo="Nossas ações"
-      titulo="O que o projeto faz"
-      descricao="Seção reservada para as TAREFAS 3 e 4 de docs/aprendendo-react.md: criar o componente CardAcao recebendo props e renderizar as sete ações (coleta, produção de mudas, manejo, compostagem, mutirões, plantios e visitas) com .map()."
-    />
+    // <SecaoPlaceholder
+    //   id="acoes"
+    //   sobretitulo="Nossas ações"
+    //   titulo="O que o projeto faz"
+    //   descricao="Seção reservada para as TAREFAS 3 e 4 de docs/aprendendo-react.md: criar o componente CardAcao recebendo props e renderizar as sete ações (coleta, produção de mudas, manejo, compostagem, mutirões, plantios e visitas) com .map()."
+    // />
+    <section id="acoes" className="mx-auto max-w-conteudo px-5 py-20">
+      <p className="rotulo-portal text-madeira">Nossas ações</p>
+      <h2 className="mt-4 text-subtitulo">O que o projeto faz</h2>
+      <ul className="mt-8 grid gap-4 sistema:grid-cols-3">
+        {acoes.map((acao) => (
+          <li key = {acao.titulo}>
+            <CardAcao titulo = {acao.titulo} descricao = {acao.descricao} />
+          </li>
+        ))}
+      </ul>
+
+    </section>
   );
 }
 

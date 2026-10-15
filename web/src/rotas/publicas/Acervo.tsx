@@ -5,10 +5,7 @@ import { Botao } from "../../componentes/ui/Botao";
 import type { Especie } from "../../lib/api";
 
 /**
- * PLACEHOLDER — tela reservada para a equipe (ver docs/escopo.md).
- *
- * O que falta: lista com busca por nome, filtro por família e cartão por
- * espécie, consumindo GET /publico/especies.
+ * O que falta: consumir GET /publico/especies.
  */
 
 // Cria uma nova lista de Especie, só com os 5 atributos listados
@@ -27,7 +24,7 @@ const especiesFixas: EspecieDoAcervo[] = [
   { id: "6", nomeComum: "Jurema-preta", nomeCientifico: "Mimosa tenuiflora", familia: "Fabaceae", fotoPrincipalUrl: null },
 ];
 
-/**Serve para normalizar o texto, tirando acentos e maiúsculasdas palavras
+/**Serve para normalizar o texto, tirando acentos e maiúsculas das palavras
  * Exemplo: "Umbuzeiro", "umbuzeiro" e "Úmbuzeiro" se igualam. */
 function normalizar(texto: string) {
   return texto
@@ -101,14 +98,6 @@ export function Acervo() {
 
       <p className="rotulo-portal mt-8 text-madeira">Acervo</p>
       <h1 className="mt-4 text-subtitulo">Espécies da Caatinga</h1>
-
-      {/* <Card className="mt-8 border-dashed">
-        <p className="rotulo">Em construção</p>
-        <p className="mt-3 max-w-[70ch] text-16 text-cinza">
-          Lista do acervo com busca por nome e filtro por família. Depende do endpoint
-          GET /publico/especies, que ainda vai ser construído.
-        </p>
-      </Card> */}
 
       <div className="mt-8 grid gap-4 sistema:max-w-[720px] sistema:grid-cols-2">
         <div>

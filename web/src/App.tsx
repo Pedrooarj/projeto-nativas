@@ -9,7 +9,7 @@ import { LayoutSistema } from "./rotas/sistema/LayoutSistema";
 import { Login } from "./rotas/sistema/Login";
 import { RotaProtegida } from "./rotas/sistema/RotaProtegida";
 import { VisaoGeral } from "./rotas/sistema/VisaoGeral";
-
+import { Sementes } from "./rotas/sistema/Sementes"
 export function App() {
   return (
     <BrowserRouter>
@@ -34,10 +34,7 @@ export function App() {
             <Route
               path="coletas"
               element={
-                <EmConstrucao
-                  nome="Banco de sementes"
-                  descricao="Lista das coletas com o saldo de sementes de cada uma, e o formulário de registrar coleta com a coordenada da matriz. Depende de GET e POST /coletas."
-                />
+                <Sementes/>
               }
             />
             <Route

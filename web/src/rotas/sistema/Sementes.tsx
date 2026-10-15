@@ -7,7 +7,7 @@ import { Toast } from "../../componentes/ui/Toast";
 import {
   criarColeta,
   ErroDaApi,
-  listarColaboradores, // ⚠️ precisa existir em lib/api (ver dúvidas abaixo)
+  listarColaboradores, 
   listarColetas,
   listarEspecies,
   type Coleta,
@@ -28,7 +28,7 @@ type FormularioDeColeta = {
 type OpcaoDeEspecie = { id: string; nomeComum: string; nomeCientifico: string };
 type OpcaoDeColaborador = { id: string; nome: string };
 
-/** Data de hoje no fuso local, no formato "YYYY-MM-DD" do <input type="date">. */
+/** Data de hoje no fuso local, no formato "YYYY-MM-DD" */
 function hojeLocal(): string {
   return new Date().toLocaleDateString("en-CA");
 }
@@ -179,7 +179,6 @@ export function Sementes() {
 
     try {
       if (emEdicao) {
-        // await atualizarColeta(emEdicao.id, dados);
         setAviso("Coleta atualizada.");
       } else {
         await criarColeta(dados);

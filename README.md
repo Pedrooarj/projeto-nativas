@@ -9,7 +9,7 @@
 > | Chistian Daniel Pereira da Silva | 20230053030 | [@ChisSilva](https://github.com/ChisSilva) | Desenvolvedor · portal e acervo |
 >
 > **Coorte de apresentação:** B (online) · **Sem integração** com outra disciplina.
-> **Proposta:** [docs/proposta.md](docs/proposta.md) · **Quadro:** [GitHub Projects](https://github.com/users/Pedrooarj/projects/1/views/1) · **Vídeo da Sprint 0:** *([link](https://youtu.be/6P3KEEPGU-g))*
+> **Proposta:** [docs/proposta.md](docs/proposta.md) · **Quadro:** [GitHub Projects](https://github.com/users/Pedrooarj/projects/1/views/1) · **Vídeo da Sprint 0:** *([link](https://youtu.be/6P3KEEPGU-g))* · **Vídeo da Sprint 1:** *(link após a gravação)*
 > **Protótipo (fonte da verdade visual):** [Claude Design](https://claude.ai/code/artifact/cb3adc0e-a497-46ff-adb0-380014f34c28) · **Uso de IA:** [docs/uso-de-ia.md](docs/uso-de-ia.md)
 
 Plataforma web do Projeto Nativas, projeto de extensão do CERES/UFRN em Caicó-RN
@@ -148,6 +148,26 @@ nativas/
   definição de pronto
 - [docs/aprendendo-react.md](docs/aprendendo-react.md) — trilha prática de React
   usando os arquivos deste repositório
+
+## Entregas por sprint
+
+Checklist da disciplina ([RUBRICAS.md](https://github.com/fmarquesfilho/processos-2026-2/blob/main/docs/RUBRICAS.md)), marcado conforme entra na `main`.
+
+### Sprint 0 (entregue em 16/09)
+
+- [x] Proposta em `docs/proposta.md`, com visão, MVP, backlog e acordo de processo
+- [x] Quadro no GitHub Projects com 13 histórias estimadas
+- [x] CI no GitHub Actions e template de PR com a Definição de Pronto
+- [x] Vídeo de 5 minutos: <https://youtu.be/6P3KEEPGU-g>
+
+### Sprint 1 (entrega em 16/10)
+
+- [x] Incremento funcional em `main`: `GET /substratos`, `GET`/`POST /coletas` com saldo de sementes e `POST /lotes` com etiqueta única (PRs #33, #37 e #34); página inicial do portal (#39) e acervo público com busca e filtro (#40)
+- [x] Kanban com políticas de coluna e WIP (3 em progresso, 2 em revisão) descritos na `proposta.md` §5 e no quadro
+- [x] Prática XP com evidência: TDD na API, commit `test(...)` antes de `feat(...)` nos PRs #33, #34 e #37; revisão de código com aprovação de outro integrante e `main` protegida (#31)
+- [x] Métricas de fluxo em [docs/metricas-sprint-1.md](docs/metricas-sprint-1.md)
+- [ ] `docs/retrospectiva-01.md` com fatos, causas e ações com responsável e prazo (#28)
+- [ ] Vídeo de 5 minutos, roteiro em [docs/roteiro-video-sprint-1.md](docs/roteiro-video-sprint-1.md) (#29)
 
 ## Se der errado
 

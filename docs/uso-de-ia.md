@@ -25,5 +25,8 @@ ser questionado sobre qualquer trecho nas apresentações.
 
 > Os fluxos centrais do produto — coletas, lotes, quadro, transições, destino final,
 > acervo público e mapa — estão **reservados à equipe** e serão implementados pelos
-> integrantes nas Sprints 1–3 (ver [`escopo.md`](escopo.md)). O esqueleto existe para
-> padronizar a base; o trabalho avaliado das sprints é da equipe.
+> integrantes nas Sprints 1 e 2 (ver [`escopo.md`](escopo.md)). O esqueleto existe para
+> padronizar a base; o trabalho avaliado das sprints é da equipe. Na Sprint 1 a API de
+> substratos, coletas e lotes foi feita pelo PO com a ferramenta (linha acima), porque
+> as telas dependiam dela e a trilha da API é dele (CODEOWNERS); as telas continuam
+> com a equipe.

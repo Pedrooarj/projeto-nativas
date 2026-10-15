@@ -77,9 +77,10 @@ o polegar sujo de terra, o dado não é registrado e o resto perde o sentido.
 3. Os quatro contadores do portal batem com a conferência manual do banco.
 4. Uma pessoa de fora sobe o projeto em menos de 10 minutos seguindo só o `README.md`.
 
-O MVP é viável em quatro sprints: o modelo de dados, a API de autenticação, os
-contadores públicos e o cadastro de espécies já estão de pé (ver §4), e os fluxos
-restantes são variações do mesmo padrão de tela e de service.
+O MVP é viável nas duas sprints de projeto do semestre (ajuste da disciplina de
+03/10): o modelo de dados, a API de autenticação, os contadores públicos e o cadastro
+de espécies já estão de pé (ver §4), e os fluxos restantes são variações do mesmo
+padrão de tela e de service.
 
 ---
 
@@ -149,14 +150,20 @@ e o design system em Tailwind. O detalhe do que está pronto e do que falta est�
 
 ### Cadência
 
-Sprints de três semanas, alinhadas ao cronograma da disciplina. **Planning** na
-segunda que abre a sprint; **fechamento** na sexta da entrega, às 23:59.
+Sprints alinhadas ao cronograma da disciplina. **Planning** na segunda que abre a
+sprint; **fechamento** no dia da entrega, às 23:59.
 
-| Sprint | Período | Entrega |
-|---|---|---|
-| 1 | 14/09 a 02/10 | 02/10 |
-| 2 | 05/10 a 23/10 | 23/10 |
-| 3 | 26/10 a 20/11 | 20/11 |
+> **Ajuste de 03/10 (cronograma da disciplina).** O semestre passou a ter duas sprints
+> de projeto, e não três: a entrega da Sprint 1 foi de 02/10 para 16/10 e a Sprint 2
+> virou a entrega final, em 30/11. As histórias marcadas como `sprint-3` no quadro
+> são replanejadas na planning da Sprint 2: entram na Sprint 2 ou vão para a v1.1.
+
+| Sprint | Período | Daily meetings com o professor | Entrega |
+|---|---|---|---|
+| 1 | 14/09 a 16/10 | 28 e 30/09, online (realizadas) | 16/10 |
+| 2 (final) | 01/11 a 30/11, com as aulas de conteúdo em 19 e 21/10 | 23 e 25/11, online | 30/11 |
+
+Prova escrita em 11/11 (Sprints 0 e 1 e o conteúdo da Sprint 2).
 
 ### Cerimônias
 
@@ -270,9 +277,11 @@ Quatro práticas, cada uma com um rastro verificável no repositório:
 
 ## 7. Coorte, quadro e integração
 
-- **Coorte de apresentação:** **B — online**, por Google Meet.
-  Sprint 1: 28/09 · Sprint 2: 19/10 · Sprint 3: 16/11 · Entrega final: 07/12.
+- **Coorte de apresentação:** **B — online**, por Google Meet. Desde o ajuste de 03/10
+  a apresentação é a *daily meeting* com o professor no fim de cada sprint:
+  Sprint 1: 28 e 30/09 (realizadas) · Sprint 2 (final): 23 e 25/11 · Entrega final: 30/11.
 - **Quadro no GitHub Projects:** <https://github.com/users/Pedrooarj/projects/1/views/1>
 - **Vídeo da Sprint 0:** *<https://youtu.be/6P3KEEPGU-g>*
+- **Vídeo da Sprint 1:** *(link após a gravação de 15/10)*
 - **Integração com outra disciplina:** não há. O Projeto Nativas é conduzido apenas em
   DIM0510 Processos de Software.

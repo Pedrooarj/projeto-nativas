@@ -78,9 +78,10 @@ Não instale biblioteca de componentes. Os oito componentes de
 - **Não instalar biblioteca de UI** (MUI, shadcn, Chakra, Radix) nem de
   formulário ou estado global. O que existe basta.
 - **Não criar camada de repositório**, DTOs, mappers ou casos de uso.
-- **Não implementar os fluxos reservados à equipe.** Coletas, lotes, quadro,
-  transição de etapa, destino final, visitas, substratos e os endpoints públicos
-  do acervo e do mapa são as tarefas de aprendizado dos estudantes. A lista está
+- **Não implementar os fluxos reservados à equipe.** As telas de coletas e lotes,
+  o quadro, transição de etapa, destino final, visitas e os endpoints públicos
+  do acervo e do mapa são as tarefas de aprendizado dos estudantes (a API de
+  substratos, coletas e lotes já existe desde a Sprint 1). A lista está
   em [docs/escopo.md](docs/escopo.md). Se pedirem para construir um deles, tudo
   bem — mas não faça por conta própria "já que estava ali".
 - **Não criar arquivo vazio ou stub** para o que ainda não existe. Um stub vazio

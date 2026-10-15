@@ -117,6 +117,12 @@ pronto e não é.
 Decisão, não esquecimento. Tudo aqui volta na v1.1 e serve como "trabalhos
 futuros" no relatório.
 
+- **Editar e excluir coleta e lote pela tela.** No MVP a API de coletas só lista e
+  cria (`GET` e `POST /coletas`), e a de lotes só cria. Não existe `PATCH` nem
+  `DELETE`: a tela do banco de sementes é lista com saldo mais formulário de
+  registro, e a busca é filtro por espécie (`GET /coletas?especieId=`) ou filtro
+  no próprio front. Exclusão é soft delete sem tela (RN-09); corrigir um registro
+  errado fica para a v1.1.
 - **Arrastar e soltar no quadro.** Há botão explícito, que funciona melhor com a
   mão suja de terra.
 - **Modo offline** com fila de sincronização.

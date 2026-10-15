@@ -5,6 +5,7 @@ import "leaflet/dist/leaflet.css";
 import { buscarMetricas, ErroDaApi, type Metricas } from "../../lib/api";
 import { Botao } from "../../componentes/ui/Botao";
 import { Card } from "../../componentes/ui/Card";
+import { CardAcao } from "../../componentes/ui/CardAcao";
 
 const CAICO: [number, number] = [-6.4578, -37.0977];
 
@@ -36,6 +37,8 @@ export function Portal() {
 }
 
 function Cabecalho() {
+  const [menuAberto, setMenuAberto] = useState(false);
+
   return (
     <header className="sticky top-0 z-40 border-b border-borda bg-areia/95 backdrop-blur">
       <div className="mx-auto flex max-w-conteudo items-center justify-between gap-4 px-5 py-4">
@@ -66,7 +69,10 @@ function Cabecalho() {
               mobile de verdade, com useState. Hoje ele não abre nada. */}
           <button
             type="button"
-            aria-label="Abrir menu"
+            aria-label={menuAberto ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={menuAberto}
+            aria-controls="menu-mobile"
+            onClick={() => setMenuAberto(!menuAberto)}
             className="min-h-toque min-w-toque rounded-botao border border-bordaForte text-verdeEscuro sistema:hidden"
           >
             ≡
@@ -77,6 +83,28 @@ function Cabecalho() {
           </Link>
         </div>
       </div>
+
+      {menuAberto && (
+        <nav
+          id = "menu-mobile"
+          aria-label = "Seções do portal"
+          className="bg-verdeTinta px-5 py-4 sistema:hidden"
+        >
+          <ul className="mx-auto flex max-w-conteudo flex-col">
+            {ancoras.map((ancora) => (
+              <li key = {ancora.id}>
+                <a href={`#${ancora.id}`} 
+                onClick={() => setMenuAberto(false)} 
+                className="block py-3 text-16 text-areia hover:underline"
+                >
+                  {ancora.texto}
+                </a>
+              </li>
+            ))}
+          </ul>
+          
+        </nav>
+      )}
     </header>
   );
 }
@@ -119,23 +147,84 @@ function Inicio() {
 
 function Sobre() {
   return (
-    <SecaoPlaceholder
-      id="sobre"
-      sobretitulo="Sobre"
-      titulo="Quem faz o Projeto Nativas"
-      descricao="Seção reservada para a TAREFA 2 de docs/aprendendo-react.md: montar aqui o texto sobre o projeto, a UFRN, o CERES, a EMCM e os voluntários, usando classes do Tailwind."
-    />
+    // <SecaoPlaceholder
+    //   id="sobre"
+    //   sobretitulo="Sobre"
+    //   titulo="Quem faz o Projeto Nativas"
+    //   descricao="Seção reservada para a TAREFA 2 de docs/aprendendo-react.md: montar aqui o texto sobre o projeto, a UFRN, o CERES, a EMCM e os voluntários, usando classes do Tailwind."
+    // />
+    <section id="sobre" className="mx-auto max-w-conteudo px-5 py-20">
+      <p className="rotulo-portal text-madeira">Sobre</p>
+      <h2 className="mt-4 text-subtitulo">Quem faz o Projeto Nativas</h2>
+
+      <div className="mt-4 max-w-[60ch] space-y-4 text-17 text-tintaCard">
+        <p>
+          O Projeto Nativas cultiva e documenta espécies da Caatinga. Coletamos sementes, produzimos mudas e fazemos plantios, e registramos cada etapa para que o trabalho com cada espécie fique acessível a quem quiser consultar.
+        </p>
+        <p>
+          O projeto nasceu na Universidade Federal do Rio Grande do Norte (UFRN) e é desenvolvido no Centro de Ensino Superior do Seridó (CERES), em Caicó, com apoio da EMCM.
+        </p>
+        <p>
+          Quem faz tudo isso acontecer são os voluntários: estudantes, professores e pessoas da comunidade que dedicam seu tempo às coletas, ao viveiro e aos plantios.
+        </p>
+      </div>
+
+    </section>
   );
 }
 
 function Acoes() {
+  const acoes = [
+    {
+      titulo: "Coleta",
+      descricao: "Reunimos sementes de espécies nativas em áreas de Caatinga, com registro do local e da data.",
+    },
+    {
+      titulo: "Produção de mudas",
+      descricao: "As sementes viram mudas no viveiro, acompanhadas até ficarem prontas para o plantio.",
+    },
+    {
+      titulo: "Manejo",
+      descricao: "Cuidamos das mudas e das áreas plantadas com rega, limpeza e acompanhamento do crescimento.",
+    },
+    {
+      titulo: "Compostagem",
+      descricao: "Transformamos resíduos orgânicos em adubo para nutrir as mudas e o solo.",
+    },
+    {
+      titulo: "Mutirões",
+      descricao: "Encontros abertos em que voluntários se juntam para trabalhar no viveiro e no campo.",
+    },
+    {
+      titulo: "Plantios",
+      descricao: "Levamos as mudas para o local definitivo e registramos cada plantio realizado.",
+    },
+    {
+      titulo: "Visitas",
+      descricao: "Recebemos escolas e grupos para conhecer o viveiro e as espécies da região.",
+    },
+  ]
+  
+  
   return (
-    <SecaoPlaceholder
-      id="acoes"
-      sobretitulo="Nossas ações"
-      titulo="O que o projeto faz"
-      descricao="Seção reservada para as TAREFAS 3 e 4 de docs/aprendendo-react.md: criar o componente CardAcao recebendo props e renderizar as sete ações (coleta, produção de mudas, manejo, compostagem, mutirões, plantios e visitas) com .map()."
-    />
+    // <SecaoPlaceholder
+    //   id="acoes"
+    //   sobretitulo="Nossas ações"
+    //   titulo="O que o projeto faz"
+    //   descricao="Seção reservada para as TAREFAS 3 e 4 de docs/aprendendo-react.md: criar o componente CardAcao recebendo props e renderizar as sete ações (coleta, produção de mudas, manejo, compostagem, mutirões, plantios e visitas) com .map()."
+    // />
+    <section id="acoes" className="mx-auto max-w-conteudo px-5 py-20">
+      <p className="rotulo-portal text-madeira">Nossas ações</p>
+      <h2 className="mt-4 text-subtitulo">O que o projeto faz</h2>
+      <ul className="mt-8 grid gap-4 sistema:grid-cols-3">
+        {acoes.map((acao) => (
+          <li key = {acao.titulo}>
+            <CardAcao titulo = {acao.titulo} descricao = {acao.descricao} />
+          </li>
+        ))}
+      </ul>
+
+    </section>
   );
 }
 

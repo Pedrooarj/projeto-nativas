@@ -9,7 +9,8 @@ import { LayoutSistema } from "./rotas/sistema/LayoutSistema";
 import { Login } from "./rotas/sistema/Login";
 import { RotaProtegida } from "./rotas/sistema/RotaProtegida";
 import { VisaoGeral } from "./rotas/sistema/VisaoGeral";
-import { Sementes } from "./rotas/sistema/Sementes"
+import { Sementes } from "./rotas/sistema/Sementes";
+
 export function App() {
   return (
     <BrowserRouter>
@@ -34,7 +35,7 @@ export function App() {
             <Route
               path="coletas"
               element={
-                <Sementes/>
+                <Sementes />
               }
             />
             <Route

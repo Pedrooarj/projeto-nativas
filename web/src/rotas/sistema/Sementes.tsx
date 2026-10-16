@@ -13,7 +13,6 @@ import {
   type Coleta,
   type DadosDeColeta,
 } from "../../lib/api";
-import { useAuth } from "../../lib/auth";
 
 type FormularioDeColeta = {
   especieId: string;
@@ -46,9 +45,6 @@ function formularioInicial(colaboradorId: string): FormularioDeColeta {
 }
 
 export function Sementes() {
-  const { usuario } = useAuth();
-  const ehAdmin = usuario?.papel === "ADMIN";
-
   const [coletas, setColetas] = useState<Coleta[]>([]);
   const [especies, setEspecies] = useState<OpcaoDeEspecie[]>([]);
   const [colaboradores, setColaboradores] = useState<OpcaoDeColaborador[]>([]);
@@ -57,7 +53,6 @@ export function Sementes() {
   const [erroDaLista, setErroDaLista] = useState<string | null>(null);
 
   const [modalAberto, setModalAberto] = useState(false);
-  const [emEdicao, setEmEdicao] = useState<Coleta | null>(null);
   const [formulario, setFormulario] = useState<FormularioDeColeta>(formularioInicial(""));
   const [erroDoFormulario, setErroDoFormulario] = useState<string | null>(null);
   const [salvando, setSalvando] = useState(false);
@@ -96,24 +91,7 @@ export function Sementes() {
   }
 
   function abrirNova() {
-    setEmEdicao(null);
     setFormulario(formularioInicial(""));
-    setErroDoFormulario(null);
-    setErroDaLocalizacao(null);
-    setModalAberto(true);
-  }
-
-  function abrirEdicao(coleta: Coleta) {
-    setEmEdicao(coleta);
-    setFormulario({
-      especieId: coleta.especieId,
-      matrizLat: String(coleta.matrizLat),
-      matrizLng: String(coleta.matrizLng),
-      qtdSementes: String(coleta.qtdSementes),
-      dataColeta: coleta.dataColeta.slice(0, 10),
-      localDescricao: coleta.localDescricao ?? "",
-      colaboradorId: coleta.colaboradorId,
-    });
     setErroDoFormulario(null);
     setErroDaLocalizacao(null);
     setModalAberto(true);
@@ -177,12 +155,8 @@ export function Sementes() {
     };
 
     try {
-      if (emEdicao) {
-        setAviso("Coleta atualizada.");
-      } else {
-        await criarColeta(dados);
-        setAviso("Coleta registrada.");
-      }
+      await criarColeta(dados);
+      setAviso("Coleta registrada.");
 
       setModalAberto(false);
 
@@ -253,20 +227,6 @@ export function Sementes() {
       titulo: "Coletado por",
       renderizar: (coleta) => <span className="text-15">{coleta.colaborador.nome}</span>,
     },
-    {
-      chave: "acoes",
-      titulo: "",
-      renderizar: (coleta) =>
-        ehAdmin ? (
-          <button
-            type="button"
-            onClick={() => abrirEdicao(coleta)}
-            className="min-h-toque text-15 text-verdeEscuro underline"
-          >
-            Editar
-          </button>
-        ) : null,
-    },
   ];
 
   return (
@@ -328,7 +288,7 @@ export function Sementes() {
 
       <Modal
         aberto={modalAberto}
-        titulo={emEdicao ? "Editar coleta" : "Registrar coleta"}
+        titulo="Registrar coleta"
         aoFechar={() => setModalAberto(false)}
       >
         <form onSubmit={salvar} className="flex flex-col gap-5">
@@ -449,7 +409,7 @@ export function Sementes() {
           ) : null}
 
           <Botao type="submit" larguraTotal desabilitado={salvando}>
-            {salvando ? "Salvando..." : emEdicao ? "Salvar alterações" : "Registrar coleta"}
+            {salvando ? "Salvando..." : "Registrar coleta"}
           </Botao>
         </form>
       </Modal>

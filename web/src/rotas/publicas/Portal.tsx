@@ -65,8 +65,6 @@ function Cabecalho() {
         </nav>
 
         <div className="flex items-center gap-3">
-          {/* TAREFA 5 de docs/aprendendo-react.md: transformar este botão no menu
-              mobile de verdade, com useState. Hoje ele não abre nada. */}
           <button
             type="button"
             aria-label={menuAberto ? "Fechar menu" : "Abrir menu"}
@@ -86,13 +84,13 @@ function Cabecalho() {
 
       {menuAberto && (
         <nav
-          id = "menu-mobile"
-          aria-label = "Seções do portal"
+          id="menu-mobile"
+          aria-label="Seções do portal"
           className="bg-verdeTinta px-5 py-4 sistema:hidden"
         >
           <ul className="mx-auto flex max-w-conteudo flex-col">
             {ancoras.map((ancora) => (
-              <li key = {ancora.id}>
+              <li key={ancora.id}>
                 <a href={`#${ancora.id}`} 
                 onClick={() => setMenuAberto(false)} 
                 className="block py-3 text-16 text-areia hover:underline"
@@ -147,12 +145,6 @@ function Inicio() {
 
 function Sobre() {
   return (
-    // <SecaoPlaceholder
-    //   id="sobre"
-    //   sobretitulo="Sobre"
-    //   titulo="Quem faz o Projeto Nativas"
-    //   descricao="Seção reservada para a TAREFA 2 de docs/aprendendo-react.md: montar aqui o texto sobre o projeto, a UFRN, o CERES, a EMCM e os voluntários, usando classes do Tailwind."
-    // />
     <section id="sobre" className="mx-auto max-w-conteudo px-5 py-20">
       <p className="rotulo-portal text-madeira">Sobre</p>
       <h2 className="mt-4 text-subtitulo">Quem faz o Projeto Nativas</h2>
@@ -168,7 +160,6 @@ function Sobre() {
           Quem faz tudo isso acontecer são os voluntários: estudantes, professores e pessoas da comunidade que dedicam seu tempo às coletas, ao viveiro e aos plantios.
         </p>
       </div>
-
     </section>
   );
 }
@@ -203,27 +194,19 @@ function Acoes() {
       titulo: "Visitas",
       descricao: "Recebemos escolas e grupos para conhecer o viveiro e as espécies da região.",
     },
-  ]
-  
+  ];
   
   return (
-    // <SecaoPlaceholder
-    //   id="acoes"
-    //   sobretitulo="Nossas ações"
-    //   titulo="O que o projeto faz"
-    //   descricao="Seção reservada para as TAREFAS 3 e 4 de docs/aprendendo-react.md: criar o componente CardAcao recebendo props e renderizar as sete ações (coleta, produção de mudas, manejo, compostagem, mutirões, plantios e visitas) com .map()."
-    // />
     <section id="acoes" className="mx-auto max-w-conteudo px-5 py-20">
       <p className="rotulo-portal text-madeira">Nossas ações</p>
       <h2 className="mt-4 text-subtitulo">O que o projeto faz</h2>
       <ul className="mt-8 grid gap-4 sistema:grid-cols-3">
         {acoes.map((acao) => (
-          <li key = {acao.titulo}>
-            <CardAcao titulo = {acao.titulo} descricao = {acao.descricao} />
+          <li key={acao.titulo}>
+            <CardAcao titulo={acao.titulo} descricao={acao.descricao} />
           </li>
         ))}
       </ul>
-
     </section>
   );
 }
@@ -391,7 +374,6 @@ function Rodape() {
           className="h-10 w-auto"
         />
 
-        {/* TAREFA 1 de docs/aprendendo-react.md: mudar o texto abaixo e abrir o primeiro PR. */}
         <p className="mt-6 max-w-[60ch] text-15 text-verdePalido">
           Projeto Nativas — projeto de extensão do CERES/UFRN, em Caicó, Rio Grande do Norte.
           Coleta de sementes, produção de mudas e replantio de espécies nativas da Caatinga.
@@ -402,27 +384,5 @@ function Rodape() {
         </p>
       </div>
     </footer>
-  );
-}
-
-function SecaoPlaceholder({
-  id,
-  sobretitulo,
-  titulo,
-  descricao,
-}: {
-  id: string;
-  sobretitulo: string;
-  titulo: string;
-  descricao: string;
-}) {
-  return (
-    <section id={id} className="mx-auto max-w-conteudo px-5 py-20">
-      <p className="rotulo-portal text-madeira">{sobretitulo}</p>
-      <h2 className="mt-4 text-subtitulo">{titulo}</h2>
-      <div className="mt-6 rounded-cartao border border-dashed border-bordaForte bg-white p-8">
-        <p className="max-w-[70ch] text-16 text-cinza">{descricao}</p>
-      </div>
-    </section>
   );
 }

@@ -97,8 +97,7 @@ export function Sementes() {
 
   function abrirNova() {
     setEmEdicao(null);
-    // Pré-seleciona quem está logado, mas o voluntário pode trocar (RN-06).
-    setFormulario(formularioInicial(usuario?.id ?? ""));
+    setFormulario(formularioInicial(""));
     setErroDoFormulario(null);
     setErroDaLocalizacao(null);
     setModalAberto(true);

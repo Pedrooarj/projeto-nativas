@@ -10,6 +10,7 @@ import { Login } from "./rotas/sistema/Login";
 import { RotaProtegida } from "./rotas/sistema/RotaProtegida";
 import { VisaoGeral } from "./rotas/sistema/VisaoGeral";
 import { Sementes } from "./rotas/sistema/Sementes";
+import { Lotes } from "./rotas/sistema/Lotes";
 
 export function App() {
   return (
@@ -41,10 +42,7 @@ export function App() {
             <Route
               path="lotes"
               element={
-                <EmConstrucao
-                  nome="Lotes"
-                  descricao="Quadro com três colunas (Etapa 1, Etapa 2 e Destino final), cadastro de lote com etiqueta automática, avançar etapa e registrar destino final. Depende de GET /lotes/quadro, POST /lotes, POST /lotes/:id/transicao e POST /lotes/:id/destino."
-                />
+                <Lotes />
               }
             />
             <Route

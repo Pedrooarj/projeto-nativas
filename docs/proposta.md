@@ -282,6 +282,6 @@ Quatro práticas, cada uma com um rastro verificável no repositório:
   Sprint 1: 28 e 30/09 (realizadas) · Sprint 2 (final): 23 e 25/11 · Entrega final: 30/11.
 - **Quadro no GitHub Projects:** <https://github.com/users/Pedrooarj/projects/1/views/1>
 - **Vídeo da Sprint 0:** *<https://youtu.be/6P3KEEPGU-g>*
-- **Vídeo da Sprint 1:** *(link após a gravação de 15/10)*
+- **Vídeo da Sprint 1:** *(link após a gravação de 16/10)*
 - **Integração com outra disciplina:** não há. O Projeto Nativas é conduzido apenas em
   DIM0510 Processos de Software.

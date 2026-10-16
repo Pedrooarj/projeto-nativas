@@ -162,7 +162,7 @@ Checklist da disciplina ([RUBRICAS.md](https://github.com/fmarquesfilho/processo
 
 ### Sprint 1 (entrega em 16/10)
 
-- [x] Incremento funcional em `main`: `GET /substratos`, `GET`/`POST /coletas` com saldo de sementes e `POST /lotes` com etiqueta única (PRs #33, #37 e #34); página inicial do portal (#39) e acervo público com busca e filtro (#40)
+- [x] Incremento funcional em `main`: `GET /substratos`, `GET`/`POST /coletas` com saldo de sementes e `POST /lotes` com etiqueta única (PRs #33, #37 e #34); página inicial do portal (#39) e acervo público com busca e filtro (#40); telas do sistema de registro de coleta com saldo (#42, histórias #1 e #11) e de cadastro de lote com etiqueta (#45, história #2)
 - [x] Kanban com políticas de coluna e WIP (3 em progresso, 2 em revisão) descritos na `proposta.md` §5 e no quadro
 - [x] Prática XP com evidência: TDD na API, commit `test(...)` antes de `feat(...)` nos PRs #33, #34 e #37; revisão de código com aprovação de outro integrante e `main` protegida (#31)
 - [x] Métricas de fluxo em [docs/metricas-sprint-1.md](docs/metricas-sprint-1.md)

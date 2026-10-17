@@ -1,4 +1,4 @@
-# Projeto Nativas — Natureza viva e forte
+,# Projeto Nativas — Natureza viva e forte
 
 > **DIM0510 Processos de Software · UFRN/DIMAp · 2026.2 — Equipe Nativas**
 >
@@ -9,7 +9,7 @@
 > | Chistian Daniel Pereira da Silva | 20230053030 | [@ChisSilva](https://github.com/ChisSilva) | Desenvolvedor · portal e acervo |
 >
 > **Coorte de apresentação:** B (online) · **Sem integração** com outra disciplina.
-> **Proposta:** [docs/proposta.md](docs/proposta.md) · **Quadro:** [GitHub Projects](https://github.com/users/Pedrooarj/projects/1/views/1) · **Vídeo da Sprint 0:** *([link](https://youtu.be/6P3KEEPGU-g))* · **Vídeo da Sprint 1:** *(link após a gravação)*
+> **Proposta:** [docs/proposta.md](docs/proposta.md) · **Quadro:** [GitHub Projects](https://github.com/users/Pedrooarj/projects/1/views/1) · **Vídeo da Sprint 0:** *([link](https://youtu.be/6P3KEEPGU-g))* · **Vídeo da Sprint 1:** *(https://youtu.be/e5Mjlejcowc?is=8iDVBfgr6tC6yypO)*
 > **Protótipo (fonte da verdade visual):** [Claude Design](https://claude.ai/code/artifact/cb3adc0e-a497-46ff-adb0-380014f34c28) · **Uso de IA:** [docs/uso-de-ia.md](docs/uso-de-ia.md)
 
 Plataforma web do Projeto Nativas, projeto de extensão do CERES/UFRN em Caicó-RN

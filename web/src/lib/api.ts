@@ -247,3 +247,38 @@ export function atualizarEspecie(id: string, dados: Partial<DadosDeEspecie>) {
 export function criarLote(dados: DadosDeLote) {
   return requisitar<Lote>("/lotes", { metodo: "POST", corpo: dados });
 }
+
+type EspecieDoPonto = { id: string; nomeComum: string; nomeCientifico: string };
+
+/** Árvore matriz no mapa público: a coordenada registrada na coleta. `data` vem como AAAA-MM-DD. */
+export type PontoMatriz = {
+  id: string;
+  lat: number;
+  lng: number;
+  data: string;
+  localDescricao: string | null;
+  fotoUrl: string | null;
+  especie: EspecieDoPonto;
+};
+
+/** Plantio definitivo no mapa público. Doação e perda não aparecem (RN-04). */
+export type PontoPlantio = {
+  id: string;
+  lat: number;
+  lng: number;
+  data: string;
+  localDescricao: string | null;
+  etiqueta: string;
+  quantidade: number;
+  fotoUrl: string | null;
+  especie: EspecieDoPonto;
+};
+
+export type MapaPublico = {
+  matrizes: PontoMatriz[];
+  plantios: PontoPlantio[];
+};
+
+export function buscarMapaPublico() {
+  return requisitar<MapaPublico>("/publico/mapa");
+}

@@ -9,6 +9,7 @@
     "start": "node dist/server.js",
     "db:migrate": "prisma migrate dev",
     "db:seed": "prisma db seed",
+    "db:importar-acervo": "tsx prisma/importar-acervo.ts",
     "db:studio": "prisma studio",
     "test": "vitest run"
   },

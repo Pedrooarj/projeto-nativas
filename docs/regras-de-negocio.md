@@ -121,6 +121,10 @@ mínimo 5 caracteres, data não futura nem anterior ao plantio do lote.
 
 **Só o plantio definitivo** gera ponto no mapa e entra no contador público.
 
+O filtro do mapa está **implementado** em `api/src/modules/publico/mapa.service.ts`
+(`GET /publico/mapa`), com teste em `mapa.service.test.ts`. O registro do destino
+(`POST /lotes/:id/destino`) ainda não existe.
+
 A operação é **atômica**: ou cria o destino, atualiza o estágio para `FINALIZADO`
 e grava o histórico, ou não faz nada. Uma muda marcada como plantada sem
 coordenada é pior que não registrada, porque parece completa.
@@ -189,6 +193,9 @@ precisam ser verdadeiros. Quem grava um registro novo pode chamar
 ---
 
 ## RN-08 — Dados calculados do acervo
+
+**Implementada** em `api/src/modules/publico/acervo.service.ts`, com teste em
+`acervo.service.test.ts`, e servida por `GET /publico/especies/:id`.
 
 Por espécie, nada digitado à mão:
 

@@ -36,7 +36,22 @@ portal, sem planilha intermediária e sem ninguém atualizando o site à mão.
 | Docker Desktop | qualquer versão atual | subir o Postgres e o Adminer |
 | Git | qualquer versão atual | clonar o repositório |
 
-## Subindo o projeto
+## Subindo o projeto só com Docker
+
+Para ver o projeto rodando numa máquina que só tem Docker (sem Node):
+
+```bash
+git clone <url-do-repositorio> nativas
+cd nativas
+docker compose up
+```
+
+Sobem quatro contêineres, nesta ordem, cada um esperando o anterior ficar saudável:
+o banco, a API (aplica as migrações e, com o banco vazio, cria os dados de
+exemplo do seed), o portal em <http://localhost:4173> e o Adminer em
+<http://localhost:8080>. A API responde em <http://localhost:3333/health>.
+
+## Subindo o projeto para desenvolver
 
 Testado do zero nesta ordem. São quatro passos e leva menos de 10 minutos.
 
@@ -45,10 +60,10 @@ Testado do zero nesta ordem. São quatro passos e leva menos de 10 minutos.
 ```bash
 git clone <url-do-repositorio> nativas
 cd nativas
-docker compose up -d
+docker compose up -d banco adminer
 ```
 
-Isso sobe dois contêineres: o Postgres 16 em `localhost:5433` e o Adminer em
+Isso sobe só dois contêineres (a API e o portal você roda com `npm run dev`): o Postgres 16 em `localhost:5433` e o Adminer em
 <http://localhost:8080> (sistema `PostgreSQL`, servidor `banco`, usuário
 `nativas`, senha `nativas`, base `nativas`).
 
@@ -112,7 +127,7 @@ Rodados dentro de `api/`, exceto onde indicado.
 
 ```
 nativas/
-├── docker-compose.yml       Postgres 16 + Adminer, só para desenvolvimento
+├── docker-compose.yml       banco, API, portal e Adminer (`docker compose up` sobe tudo)
 ├── CLAUDE.md                instruções para sessões de Claude Code neste repositório
 ├── docs/                    a documentação do projeto (links no fim deste arquivo)
 ├── referencia/              documentos de concepção do projeto, fonte das decisões

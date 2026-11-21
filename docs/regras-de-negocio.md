@@ -212,6 +212,14 @@ preenchido pela coordenação e entra por **importação de planilha**, não por
 digitação tela a tela — são 30 a 40 espécies. A tela de cadastro existe para
 correção pontual.
 
+**Importação** em `api/src/modules/especies/importacao.service.ts`, pela rota
+`POST /especies/importacao` (só admin, corpo em `text/csv`, `?simular=true` para só
+validar) ou por `npm run db:importar-acervo -- planilha.csv [--simular]`. O modelo de
+colunas está em `docs/planilha-modelo-acervo.csv`; listas (usos, galeria) usam `|`
+dentro da célula. A chave é o nome científico: espécie que já existe é atualizada, e
+célula vazia não apaga o que já está no banco. Tudo ou nada: com qualquer linha errada,
+nada é gravado e o `422` lista linha, campo e mensagem.
+
 ---
 
 ## RN-09 — Permissões e exclusão

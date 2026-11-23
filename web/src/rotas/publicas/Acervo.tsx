@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
 import { Card } from "../../componentes/ui/Card";
 import { useEffect, useState } from "react";
 import { Botao } from "../../componentes/ui/Botao";
 import type { Especie } from "../../lib/api";
+import { CabecalhoPublico } from "../../componentes/publico/CabecalhoPublico";
+import { RodapePublico } from "../../componentes/publico/RodapePublico";
 
 /**
  * O que falta: consumir GET /publico/especies.
@@ -91,34 +92,48 @@ export function Acervo() {
   }
 
   return (
-    <main className="mx-auto max-w-conteudo px-5 py-16">
-      <Link to="/" className="text-15 text-verdeEscuro hover:underline">
-        &larr; Voltar ao portal
-      </Link>
+    <div className="flex min-h-screen flex-col bg-areia">
+    <CabecalhoPublico ativa="acervo" />
+    <main className="mx-auto w-full max-w-conteudo flex-1 px-5 py-14">
+      <p className="rotulo-portal text-madeira">
+        Acervo{carregando ? "" : ` · ${especies.length} espécies nativas da Caatinga`}
+      </p>
+      <h1 className="mt-4 text-titulo tracking-tituloForte">
+        Acervo de <span className="destaque">espécies</span>
+      </h1>
 
-      <p className="rotulo-portal mt-8 text-madeira">Acervo</p>
-      <h1 className="mt-4 text-subtitulo">Espécies da Caatinga</h1>
-
-      <div className="mt-8 grid gap-4 sistema:max-w-[720px] sistema:grid-cols-2">
-        <div>
-          <label htmlFor="busca" className="rotulo">Buscar</label>
+      {/* Busca e filtro numa linha só, como no protótipo; os rótulos ficam para leitor de tela. */}
+      <div className="mt-8 grid gap-3 sistema:grid-cols-[1fr_auto]">
+        <div className="relative">
+          <label htmlFor="busca" className="sr-only">Buscar por nome comum ou científico</label>
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-cinza"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            <circle cx="11" cy="11" r="7" />
+            <path d="m20 20-3.5-3.5" />
+          </svg>
           <input 
             id = "busca"
             type="search"
             value={busca}
             onChange={(evento) => setBusca(evento.target.value)}
-            placeholder="nome comum ou científico"
-            className="mt-2 min-h-toque w-full rounded-campo border border-bordaForte bg-white px-4 text-16 text-tintaCard"
+            placeholder="Buscar por nome comum ou científico"
+            className="min-h-toque w-full rounded-campo border border-bordaForte bg-white pl-11 pr-4 text-16 text-tintaCard"
             />
         </div>
 
         <div>
-          <label htmlFor="familia" className="rotulo">Família botânica</label>
+          <label htmlFor="familia" className="sr-only">Família botânica</label>
           <select 
             id="familia"
             value={familia}
             onChange={(evento) => setFamilia(evento.target.value)}
-            className="mt-2 min-h-toque w-full rounded-campo border border-bordaForte bg-white px-4 text-16 text-tintaCard"
+            className="min-h-toque w-full rounded-campo border border-bordaForte bg-white px-4 font-mono text-14 text-verdeEscuro sistema:w-auto"
           >
             <option value="">Todas as famílias</option>
             {familias.map((nome) => (
@@ -190,7 +205,10 @@ export function Acervo() {
                         aria-hidden="true"
                       />
                     )}
-                    <p className="text-18 text-verdeEscuro">{especie.nomeComum}</p>
+                    <p className="rotulo-portal text-madeira">{especie.familia}</p>
+                    <p className="mt-2 font-display text-24 tracking-titulo text-verdeEscuro">
+                      {especie.nomeComum}
+                    </p>
                     <p className="mt-1 text-14 italic text-cinzaMeta">{especie.nomeCientifico}</p>
                   </Card>
                 </li>
@@ -200,5 +218,7 @@ export function Acervo() {
         )}
       </div>
     </main>
+    <RodapePublico />
+    </div>
   );
 }

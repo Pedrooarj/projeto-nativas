@@ -1,4 +1,4 @@
-import { Router } from "express";
+import express, { Router } from "express";
 import { autenticar, exigirAdmin } from "../../shared/autenticar";
 import {
   atualizarEspecieSchema,
@@ -11,8 +11,27 @@ import {
   criarEspecie,
   listarEspecies,
 } from "./especies.service";
+import { importarAcervo } from "./importacao.service";
 
 export const especiesRoutes = Router();
+
+// Importação do acervo (RN-08, RN-09: só admin). O corpo é o próprio CSV, enviado
+// com Content-Type text/csv. Com ?simular=true só valida e mostra o que faria.
+especiesRoutes.post(
+  "/importacao",
+  autenticar,
+  exigirAdmin,
+  express.text({ type: ["text/csv", "text/plain"], limit: "1mb" }),
+  async (req, res, next) => {
+    try {
+      const texto = typeof req.body === "string" ? req.body : "";
+      const simular = req.query.simular === "true";
+      res.json(await importarAcervo(texto, { simular }));
+    } catch (erro) {
+      next(erro);
+    }
+  },
+);
 
 especiesRoutes.get("/", autenticar, async (req, res, next) => {
   try {

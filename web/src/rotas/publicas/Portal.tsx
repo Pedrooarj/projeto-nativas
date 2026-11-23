@@ -106,33 +106,40 @@ function Cabecalho() {
 
 function Inicio() {
   return (
-    <section id="inicio" className="relative overflow-hidden">
-      {/* Marca d'água do elemento radial da marca, a 14% como manda o design. */}
+    <section
+      id="inicio"
+      className="relative overflow-hidden bg-gradient-to-b from-verdeEscuro to-verdeTinta"
+    >
+      {/* Como no protótipo: abertura verde escura de ponta a ponta, título grande em
+          areia e o elemento radial da marca como marca d'água à direita. */}
       <img
         src="/marca/el-05.svg"
         alt=""
         aria-hidden="true"
-        className="pointer-events-none absolute -right-24 -top-24 w-[420px] opacity-[0.14]"
+        className="pointer-events-none absolute -right-16 top-10 w-[300px] opacity-[0.14] invert sistema:right-[8%] sistema:top-16 sistema:w-[440px]"
       />
 
-      <div className="relative mx-auto max-w-conteudo px-5 py-20 sistema:py-28">
-        <p className="rotulo-portal text-madeira">Projeto de extensão · CERES/UFRN · Caicó-RN</p>
+      <div className="relative mx-auto flex min-h-[78vh] max-w-conteudo flex-col justify-end px-5 pb-20 pt-28 sistema:pb-24">
+        <p className="rotulo-portal text-verdeClaro">Projeto Nativas · CERES/UFRN · Caicó, RN</p>
 
-        <h1 className="mt-5 max-w-[16ch] text-titulo tracking-tituloForte text-verdeEscuro">
+        <h1 className="mt-5 max-w-[10ch] break-words text-[clamp(38px,10vw,128px)] uppercase leading-[0.92] tracking-tituloForte text-areia">
           Natureza viva e forte
         </h1>
 
-        <p className="mt-6 max-w-[52ch] text-18 text-tintaCard">
+        <p className="mt-6 max-w-[44ch] text-18 text-verdePalido sistema:text-[22px]">
           Agir agroecológico para a sustentabilidade na Caatinga. Coletamos sementes de espécies
           nativas, produzimos mudas no viveiro e replantamos na região do Seridó.
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">
           <a href="#acervo">
-            <Botao variante="primario">Conhecer as espécies</Botao>
+            <Botao variante="primario">Conheça o acervo</Botao>
           </a>
-          <a href="#contadores">
-            <Botao variante="secundario">Ver os números</Botao>
+          <a
+            href="#mapa"
+            className="inline-flex min-h-toque items-center rounded-botao border border-areia/70 px-5 text-17 text-areia hover:bg-areia/10"
+          >
+            Veja o mapa
           </a>
         </div>
       </div>
@@ -247,7 +254,7 @@ function Contadores() {
 
         {erro ? (
           <p className="mt-8 rounded-cartao bg-madeiraTint px-4 py-3 text-15 text-madeira">
-            Não consegui carregar os números agora: {erro}
+            Os números não carregaram agora. Tente de novo em alguns minutos.
           </p>
         ) : null}
 
@@ -272,7 +279,9 @@ function AcervoEmDestaque() {
   return (
     <section id="acervo" className="mx-auto max-w-conteudo px-5 py-20">
       <p className="rotulo-portal text-madeira">Acervo</p>
-      <h2 className="mt-4 text-subtitulo">As espécies que cultivamos</h2>
+      <h2 className="mt-4 text-subtitulo">
+        As <span className="destaque">espécies</span> que cultivamos
+      </h2>
       <p className="mt-4 max-w-[60ch] text-17 text-tintaCard">
         Cada espécie tem uma página com as informações botânicas e com o que o projeto já fez com
         ela: coletas, mudas produzidas e plantios.
@@ -283,10 +292,8 @@ function AcervoEmDestaque() {
           <Card key={nome}>
             <div className="mb-4 h-32 rounded-campo bg-areiaEscura" aria-hidden="true" />
             <p className="rotulo">Espécie</p>
-            <p className="mt-2 text-18 text-verdeEscuro">{nome}</p>
-            <p className="mt-1 text-14 text-cinzaMeta">
-              Cartão de exemplo. O acervo de verdade entra com GET /publico/especies.
-            </p>
+            <p className="mt-2 font-display text-24 tracking-titulo text-verdeEscuro">{nome}</p>
+            <p className="mt-1 text-14 text-cinzaMeta">Nativa da Caatinga, cultivada no viveiro.</p>
           </Card>
         ))}
       </div>

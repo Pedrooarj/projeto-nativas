@@ -18,12 +18,52 @@ services:
       timeout: 5s
       retries: 10
 
+  # API (Express + Prisma). Aplica as migracoes ao subir e, com o banco vazio,
+  # cria os dados de exemplo (login admin@nativas.ufrn.br, senha de exemplo do seed).
+  api:
+    build: ./api
+    container_name: nativas-api
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://nativas:nativas@banco:5432/nativas?schema=public
+      JWT_SECRET: troque-este-valor-em-producao
+      JWT_EXPIRES_IN: 7d
+      PORT: "3333"
+      CORS_ORIGIN: http://localhost:4173
+      SEED_SE_VAZIO: "1"
+    ports:
+      - "3333:3333"
+    depends_on:
+      banco:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3333/health >/dev/null || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+
+  # Portal e sistema (build do Vite no nginx): http://localhost:4173
+  web:
+    build:
+      context: ./web
+      args:
+        VITE_API_URL: http://localhost:3333/api/v1
+    container_name: nativas-web
+    restart: unless-stopped
+    ports:
+      - "4173:80"
+    depends_on:
+      api:
+        condition: service_healthy
+
   adminer:
     image: adminer:4
     container_name: nativas-adminer
     restart: unless-stopped
     depends_on:
-      - banco
+      banco:
+        condition: service_healthy
     ports:
       - "8080:8080"
 

@@ -60,6 +60,11 @@ lotes — informação real em vez de padrão fictício.
 
 ## RN-03 — Fluxo de crescimento
 
+**Implementada** em `api/src/modules/lotes/lotes.service.ts` (`POST /lotes/:id/transicao`,
+`GET /lotes/quadro` e `GET /lotes/:id`), com teste em `lotes.etapas.service.test.ts`.
+A transição por essa rota é só Etapa 1 → Etapa 2; o destino final tem rota própria.
+Sem `identificacaoFina` no corpo, a antiga é apagada, porque o lote mudou de lugar.
+
 ```
   cadastro ──► ETAPA 1 ──┬──► ETAPA 2 ──┐
              Tubete ou   │    Saco ou   ├──► DESTINO FINAL
@@ -103,6 +108,11 @@ etapa nova, recipiente, setor, data e responsável. O histórico é **append-onl
 ---
 
 ## RN-04 — Destino final
+
+**Implementada** em `api/src/modules/lotes/lotes.service.ts` (`POST /lotes/:id/destino`),
+com teste em `lotes.etapas.service.test.ts`. A quantidade não pode passar as mudas vivas
+do lote (ou as sementes plantadas, se não houver contagem): passar devolve `409` com
+`detalhes.maximo`.
 
 Um lote é finalizado inteiro, em um único destino. Lotes da mesma espécie
 plantados em épocas diferentes são lotes diferentes.

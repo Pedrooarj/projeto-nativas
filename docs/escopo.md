@@ -57,8 +57,27 @@ GET    /api/v1/coletas             POST /api/v1/coletas
 GET    /api/v1/especies            GET  /api/v1/especies/:id
 POST   /api/v1/especies            PATCH /api/v1/especies/:id     (admin)
 POST   /api/v1/lotes
-GET    /api/v1/publico/metricas
+GET    /api/v1/publico/metricas    GET  /api/v1/publico/mapa
+GET    /api/v1/publico/especies    GET  /api/v1/publico/especies/:id
 ```
+
+**Endpoints públicos do acervo e do mapa** (Sprint 2, sem login, nenhum expõe
+colaborador):
+
+- `GET /publico/especies` devolve a lista do acervo em ordem alfabética, só com
+  o que o cartão mostra: `id`, `nomeComum`, `nomeCientifico`, `familia` e
+  `fotoPrincipalUrl`.
+- `GET /publico/especies/:id` devolve o conteúdo botânico (`descricao`, `porte`,
+  `epocaFloracao`, `epocaFrutificacao`, `usos`, `fotoPrincipalUrl`, `galeria`)
+  e o objeto `numeros` da RN-08: `coletas`, `sementesColetadas`,
+  `mudasProduzidas`, `plantiosDefinitivos`, `germinacao` (`taxa` de 0 a 1, ou
+  `null` enquanto nenhum lote tiver contagem, e `lotesConsiderados`) e
+  `tratamentos` (lista de `{ tratamento, lotes }`). Espécie excluída ou
+  inexistente devolve `404`.
+- `GET /publico/mapa` devolve `{ matrizes, plantios }`. Cada matriz é a
+  coordenada de uma coleta (`lat`, `lng`, `data`, `localDescricao`, `fotoUrl`,
+  `especie`); cada plantio é um destino do tipo plantio definitivo (os mesmos
+  campos mais `etiqueta` e `quantidade`). `data` vem como `AAAA-MM-DD`.
 
 **Utilitário de etiqueta.** `api/src/shared/gerarTag.ts` implementa a RN-01
 inteira, com o controle de concorrência e teste — inclusive o de duas chamadas
@@ -70,6 +89,11 @@ juntos ou não nascem.
 token no localStorage, cliente de API tipado, os oito componentes de interface
 (`Botao`, `Campo`, `Select`, `Badge`, `Card`, `Modal`, `Tabela`, `Toast`) e o
 design system no `tailwind.config.ts`.
+
+O **mapa do portal** (`web/src/rotas/publicas/MapaPublico.tsx`) consome
+`GET /publico/mapa`: estrela azul para matriz, ponto azul com borda branca para
+plantio definitivo, e janela ao clicar com espécie, data, etiqueta e link para o
+acervo.
 
 Três telas funcionam de ponta a ponta: o **portal** com os contadores consumindo
 `/publico/metricas` de verdade, o **login** e a tela de **espécies** com lista,
@@ -89,8 +113,6 @@ busca e formulário em modal. As demais são placeholders identificados.
 | `POST /lotes/:id/transicao` | RN-03 |
 | `POST /lotes/:id/destino` | RN-04 |
 | `GET /visitas` · `POST /visitas` | RN-06 |
-| `GET /publico/mapa` | RN-04 (só plantio definitivo aparece) |
-| `GET /publico/especies` · `GET /publico/especies/:id` | RN-08 |
 
 Nenhum arquivo vazio foi criado para eles de propósito: um stub vazio parece
 pronto e não é.
@@ -102,7 +124,6 @@ pronto e não é.
 - Tela de confirmação com a etiqueta gerada, em mono, e a instrução de anotar na
   plaqueta
 - Acervo público: lista, filtro por família e página da espécie
-- Mapa com os dois tipos de ponto (matrizes e plantios) e janela ao clicar
 - Registro de visitas e telas de configuração
 
 ### Fora do código

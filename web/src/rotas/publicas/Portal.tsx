@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { MapContainer, TileLayer } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
 import { buscarMetricas, ErroDaApi, type Metricas } from "../../lib/api";
 import { Botao } from "../../componentes/ui/Botao";
 import { Card } from "../../componentes/ui/Card";
 import { CardAcao } from "../../componentes/ui/CardAcao";
-
-const CAICO: [number, number] = [-6.4578, -37.0977];
+import { MapaPublico } from "./MapaPublico";
 
 const ancoras = [
   { id: "sobre", texto: "Sobre" },
@@ -29,7 +26,7 @@ export function Portal() {
         <Contadores />
         <AcervoEmDestaque />
         <Parceiros />
-        <Mapa />
+        <MapaPublico />
       </main>
       <Rodape />
     </div>
@@ -331,33 +328,6 @@ function Parceiros() {
             </li>
           ))}
         </ul>
-      </div>
-    </section>
-  );
-}
-
-function Mapa() {
-  return (
-    <section id="mapa" className="mx-auto max-w-conteudo px-5 py-20">
-      <p className="rotulo-portal text-madeira">Mapa</p>
-      <h2 className="mt-4 text-subtitulo">Onde coletamos e onde plantamos</h2>
-      <p className="mt-4 max-w-[60ch] text-17 text-tintaCard">
-        O mapa já está montado com Leaflet e centrado em Caicó. Os pinos das matrizes e dos
-        plantios definitivos entram quando o endpoint GET /publico/mapa existir.
-      </p>
-
-      <div className="mt-8 overflow-hidden rounded-cartao border border-borda">
-        <MapContainer
-          center={CAICO}
-          zoom={12}
-          scrollWheelZoom={false}
-          style={{ height: "420px", width: "100%" }}
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-        </MapContainer>
       </div>
     </section>
   );

@@ -77,4 +77,10 @@
   .etiqueta {
     @apply font-mono text-14 tracking-rotulo;
   }
+
+  /* Palavra em destaque nos títulos, como no protótipo ("Acervo de espécies"):
+     pílula azul com texto branco (contraste AA, 6:1). Uma por título, no máximo. */
+  .destaque {
+    @apply inline-block -rotate-1 rounded-full bg-azul px-[0.3em] leading-[1.15] text-white;
+  }
 }

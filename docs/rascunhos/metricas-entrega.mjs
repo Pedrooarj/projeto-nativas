@@ -6,6 +6,7 @@
 //   node docs/rascunhos/metricas-entrega.mjs --ate=2026-11-30T23:59:00-03:00
 
 import { execFileSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 
 const REPO = "Pedrooarj/projeto-nativas";
 const INICIO_SPRINT_2 = "2026-11-01T03:00:00Z";
@@ -282,3 +283,20 @@ for (const c of commits.values()) {
   porPessoa[c.login] = (porPessoa[c.login] ?? 0) + 1;
 }
 for (const [pessoa, n] of Object.entries(porPessoa)) console.log(`${pessoa}: ${n}`);
+
+console.log("\n## Licenças (estado atual, não depende do corte)");
+const contribuidores = ghJsonLinhas(`repos/${REPO}/contributors?per_page=100`, ".[] | {login: .login}").map((c) => c.login);
+console.log(`Pessoas com commits: ${contribuidores.length} (${contribuidores.join(", ")})`);
+for (const projeto of ["api", "web"]) {
+  const caminho = new URL(`../../${projeto}/package-lock.json`, import.meta.url);
+  const trava = JSON.parse(readFileSync(caminho, "utf8"));
+  const porLicenca = {};
+  for (const [nome, pacote] of Object.entries(trava.packages)) {
+    if (!nome || pacote.dev || pacote.devOptional) continue;
+    const licenca = pacote.license ?? "sem campo";
+    porLicenca[licenca] = (porLicenca[licenca] ?? 0) + 1;
+  }
+  const total = Object.values(porLicenca).reduce((s, n) => s + n, 0);
+  const partes = Object.entries(porLicenca).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).map(([l, n]) => `${n} ${l}`);
+  console.log(`${projeto}: ${total} pacotes de produção | ${partes.join(", ")}`);
+}

@@ -6,6 +6,7 @@
 titularidade precisam de confirmação de quem responde por isso na UFRN ou de um profissional.
 **Marcadores:** [fato] verificado no repositório ou no texto da licença. [suposição] precisa de
 confirmação.
+**Reproduzir as contagens:** `node docs/rascunhos/metricas-entrega.mjs`, seção "Licenças".
 
 ## Situação atual
 

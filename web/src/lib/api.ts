@@ -282,3 +282,22 @@ export type MapaPublico = {
 export function buscarMapaPublico() {
   return requisitar<MapaPublico>("/publico/mapa");
 }
+
+/** Números do que o projeto já fez com a espécie (RN-08). Calculados pela API. */
+export type NumerosDaEspecie = {
+  coletas: number;
+  sementesColetadas: number;
+  mudasProduzidas: number;
+  plantiosDefinitivos: number;
+  germinacao: { taxa: number | null; lotesConsiderados: number };
+  tratamentos: { tratamento: string; lotes: number }[];
+};
+
+/** Resposta de GET /publico/especies/:id. */
+export type EspeciePublicaDados = Omit<Especie, "criadoEm"> & {
+  numeros: NumerosDaEspecie;
+};
+
+export function buscarEspeciePublica(id: string) {
+  return requisitar<EspeciePublicaDados>(`/publico/especies/${encodeURIComponent(id)}`);
+}

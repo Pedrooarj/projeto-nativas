@@ -34,8 +34,8 @@ revisão humana registrada [fato], antes da proteção da `main`.
 - **As etapas não somam.** Cada uma tem seu próprio n, e soma de medianas não dá a mediana do
   total.
 - **O desenvolvimento aparece menor do que foi.** O relógio começa no primeiro commit. Trabalho
-  local antes dele não é visível, e muitos PRs foram abertos logo depois de um commit único
-  [estimativa].
+  local antes dele não é visível, e a mediana de 3 min [fato] sugere que boa parte do trabalho
+  já estava pronta quando o primeiro commit foi feito [estimativa].
 - **A espera inclui backlog planejado.** Várias histórias foram criadas juntas no planejamento de
   2026-09-10, então parte da espera é ordem de prioridade e não desperdício [estimativa].
 

@@ -176,23 +176,25 @@ export function Acervo() {
             <ul className="mt-4 grid gap-4 sistema:grid-cols-3">
               {filtradas.map((especie) => (
                 <li key={especie.id}>
-                  <Card className="h-full">
-                    {especie.fotoPrincipalUrl ? (
-                      <img
-                        src={especie.fotoPrincipalUrl}
-                        alt={especie.nomeComum}
-                        loading="lazy"
-                        className="mb-4 h-40 w-full rounded-campo object-cover"
-                      />
-                    ) : (
-                      <div
-                        className="mb-4 h-40 rounded-campo bg-areiaEscura"
-                        aria-hidden="true"
-                      />
-                    )}
-                    <p className="text-18 text-verdeEscuro">{especie.nomeComum}</p>
-                    <p className="mt-1 text-14 italic text-cinzaMeta">{especie.nomeCientifico}</p>
-                  </Card>
+                  <Link to={`/acervo/${especie.id}`} className="block h-full">
+                    <Card className="h-full">
+                      {especie.fotoPrincipalUrl ? (
+                        <img
+                          src={especie.fotoPrincipalUrl}
+                          alt={especie.nomeComum}
+                          loading="lazy"
+                          className="mb-4 h-40 w-full rounded-campo object-cover"
+                        />
+                      ) : (
+                        <div
+                          className="mb-4 h-40 rounded-campo bg-areiaEscura"
+                          aria-hidden="true"
+                        />
+                      )}
+                      <p className="text-18 text-verdeEscuro">{especie.nomeComum}</p>
+                      <p className="mt-1 text-14 italic text-cinzaMeta">{especie.nomeCientifico}</p>
+                    </Card>
+                  </Link>
                 </li>
               ))}
             </ul>

@@ -10,31 +10,36 @@ Antes da reunião, refazer com `--ate=2026-11-30T23:59:00-03:00` e atualizar a s
 
 **Entrega**
 - [fato] 1 PR mesclado na `main` desde 2026-11-01 (#49).
-- [fato] 5 PRs abertos (#50 a #54), 2 em rascunho (#53 e #54).
-- [fato] 7 issues abertas: #5, #6, #8, #10, #13, #23 e #43.
-- [fato] 0 implantações, 0 releases e 0 tags registradas no GitHub.
+- [fato] 5 PRs abertos: #50, #51 e #52 prontos; #53 e #54 em rascunho.
+- [fato] ChisSilva aprovou #51, #52, #53 e #54 em 2026-11-23. O #50 segue sem aprovação.
+- [fato] 7 issues abertas no corte: #5, #6, #8, #10, #13, #23 e #43.
+- [fato] 0 implantações, 0 releases e 0 tags até o corte.
 - Pontos planejados e entregues: ____ (preencher pelo quadro)
 
 **Fluxo**
 - [fato] Lead time do #49, do primeiro commit ao merge: 7,0 dias.
-- [fato] Primeira revisão humana: 7,0 dias no #49; 4,9 dias no #51 e no #52; 4,4 dias no #53 e no #54; o #50 ainda não teve.
+- [fato] Fila de revisão dos PRs prontos, desde `ready_for_review` ou da abertura: #49 2,0 dias; #51 4,9 dias; #52 1 min; #50 sem revisão há 5,1 dias.
+- [fato] #53 e #54 estão em rascunho e ficam fora da fila e do WIP, conforme o acordo.
 - [fato] WIP em revisão no corte: 3 PRs prontos, com limite de 2.
-- [fato] CI na `main`: 22 execuções no projeto, 0 falhas.
-- [estimativa] Frequência de integração na Sprint 2: 0,31 merge por semana (ver `metricas-dora.md`).
+- [fato] CI na `main`: 22 execuções no projeto, 0 incidentes.
+- [estimativa] Frequência de integração na Sprint 2, usada como substituto de DORA: 0,31 merge por semana (ver `metricas-dora.md`).
 
-**Atividade no remoto**
-- [fato] Commits sem merge desde 2026-11-01, em branches do GitHub: Pedrooarj 12, ChisSilva 5.
-- Esse número não mede esforço: não inclui trabalho local sem push, estudo, revisão nem reunião.
-  Cada integrante completa abaixo o que o git não mostra.
-  - Pedro: ____
-  - Chistian: ____
-  - Levy: ____
+**Commits no GitHub desde 2026-11-01**
+
+| Pessoa | Commits sem merge [fato] | O que o git não mostra (a pessoa preenche) |
+|---|---|---|
+| Pedro (Pedrooarj) | 12 | ____ |
+| Chistian (ChisSilva) | 5 | ____ |
+| Levy (levyingx) | 0 | ____ |
+
+Commit não mede toda a participação: a contagem não inclui trabalho local sem push, estudo,
+revisão, pareamento sem coautoria, reunião nem documentação feita fora do repositório.
 
 ## 2. Verificação das ações da Sprint 1
 
 | # | Ação combinada | O que os dados mostram | Cumprida? (time) | Comentário (time) |
 |---|---|---|---|---|
-| 1 | Revisar PR em até 24 h e manter no máximo 2 em revisão | [fato] Nenhum dos PRs da Sprint 2 (#49 a #54) teve primeira revisão humana em até 24 h; WIP de 3 no corte | ____ | ____ |
+| 1 | Revisar PR em até 24 h e manter no máximo 2 em revisão | [fato] Dos 4 PRs prontos abertos na sprint (#49 a #52), 1 teve a primeira revisão humana em até 24 h (#52) e 3 não (#49, #50, #51); WIP de 3 no corte | ____ | ____ |
 | 2 | Abrir PR em rascunho na primeira semana da história | Depende das datas de início no quadro: ____ | ____ | ____ |
 | 3 | Registrar a capacidade em pontos na Planning | Depende do registro da Planning: ____ | ____ | ____ |
 

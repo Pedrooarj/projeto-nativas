@@ -3,16 +3,7 @@ import { Card } from "../../componentes/ui/Card";
 import { useEffect, useState } from "react";
 import { Botao } from "../../componentes/ui/Botao";
 import type { Especie } from "../../lib/api";
-
-/**
- * O que falta: consumir GET /publico/especies.
- */
-
-// Cria uma nova lista de Especie, só com os 5 atributos listados
-type EspecieDoAcervo = Pick<
-  Especie,
-  "id" | "nomeComum" | "nomeCientifico" | "familia" | "fotoPrincipalUrl"
->;
+import { ErroDaApi, listarEspeciesPublicas, type EspecieDoAcervo } from "../../lib/api";
 
 // TEMPORÁRIO: lista temporária enquanto GET /publico/especies não existe
 const especiesFixas: EspecieDoAcervo[] = [
@@ -41,24 +32,12 @@ export function Acervo() {
   const [familia, setFamilia] = useState("");                         // A escolha começa vazia
 
   useEffect(() => {
-    // TEMPORÁRIO: simula a espera da API para você ver o estado "carregando".
-    // Com o endpoint pronto, troque tudo isto por:
-    //
-    //   let ativo = true;
-    //   listarEspeciesPublicas()
-    //     .then((lista) => { if (ativo) setEspecies(lista); })
-    //     .catch((problema: ErroDaApi) => { if (ativo) setErro(problema.message); })
-    //     .finally(() => { if (ativo) setCarregando(false); });
-    //   return () => { ativo = false; };
-    //
-    // (e importar ErroDaApi e listarEspeciesPublicas de ../../lib/api)
-    
-    const relogio = setTimeout(() => {
-      setEspecies(especiesFixas);
-      setCarregando(false);
-    }, 500);
-
-    return () => clearTimeout(relogio);
+    let ativo = true;
+    listarEspeciesPublicas()
+      .then((lista) => { if (ativo) setEspecies(lista); })
+      .catch((problema: ErroDaApi) => { if (ativo) setErro(problema.message); })
+      .finally(() => { if (ativo) setCarregando(false); });
+    return () => { ativo = false; };
   }, [] );                                                            // O [] significa "rode só uma vez, quando a página abrir"
 
   /**

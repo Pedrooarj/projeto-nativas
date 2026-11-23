@@ -301,3 +301,14 @@ export type EspeciePublicaDados = Omit<Especie, "criadoEm"> & {
 export function buscarEspeciePublica(id: string) {
   return requisitar<EspeciePublicaDados>(`/publico/especies/${encodeURIComponent(id)}`);
 }
+
+/** Item da lista pública do acervo: só o que o cartão precisa. */
+export type EspecieDoAcervo = Pick<
+  Especie,
+  "id" | "nomeComum" | "nomeCientifico" | "familia" | "fotoPrincipalUrl"
+>;
+
+/** Lista pública do acervo, sem login. O filtro é feito na tela. */
+export function listarEspeciesPublicas() {
+  return requisitar<EspecieDoAcervo[]>("/publico/especies");
+}

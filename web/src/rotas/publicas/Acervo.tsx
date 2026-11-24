@@ -1,29 +1,10 @@
+import { Link } from "react-router-dom";
 import { Card } from "../../componentes/ui/Card";
 import { useEffect, useState } from "react";
 import { Botao } from "../../componentes/ui/Botao";
-import type { Especie } from "../../lib/api";
 import { CabecalhoPublico } from "../../componentes/publico/CabecalhoPublico";
 import { RodapePublico } from "../../componentes/publico/RodapePublico";
-
-/**
- * O que falta: consumir GET /publico/especies.
- */
-
-// Cria uma nova lista de Especie, só com os 5 atributos listados
-type EspecieDoAcervo = Pick<
-  Especie,
-  "id" | "nomeComum" | "nomeCientifico" | "familia" | "fotoPrincipalUrl"
->;
-
-// TEMPORÁRIO: lista temporária enquanto GET /publico/especies não existe
-const especiesFixas: EspecieDoAcervo[] = [
-  { id: "1", nomeComum: "Angico", nomeCientifico: "Anadenanthera colubrina", familia: "Fabaceae", fotoPrincipalUrl: null },
-  { id: "2", nomeComum: "Mandacaru", nomeCientifico: "Cereus jamacaru", familia: "Cactaceae", fotoPrincipalUrl: null },
-  { id: "3", nomeComum: "Umbuzeiro", nomeCientifico: "Spondias tuberosa", familia: "Anacardiaceae", fotoPrincipalUrl: null },
-  { id: "4", nomeComum: "Aroeira", nomeCientifico: "Myracrodruon urundeuva", familia: "Anacardiaceae", fotoPrincipalUrl: null },
-  { id: "5", nomeComum: "Juazeiro", nomeCientifico: "Ziziphus joazeiro", familia: "Rhamnaceae", fotoPrincipalUrl: null },
-  { id: "6", nomeComum: "Jurema-preta", nomeCientifico: "Mimosa tenuiflora", familia: "Fabaceae", fotoPrincipalUrl: null },
-];
+import { ErroDaApi, listarEspeciesPublicas, type EspecieDoAcervo } from "../../lib/api";
 
 /**Serve para normalizar o texto, tirando acentos e maiúsculas das palavras
  * Exemplo: "Umbuzeiro", "umbuzeiro" e "Úmbuzeiro" se igualam. */
@@ -42,24 +23,12 @@ export function Acervo() {
   const [familia, setFamilia] = useState("");                         // A escolha começa vazia
 
   useEffect(() => {
-    // TEMPORÁRIO: simula a espera da API para você ver o estado "carregando".
-    // Com o endpoint pronto, troque tudo isto por:
-    //
-    //   let ativo = true;
-    //   listarEspeciesPublicas()
-    //     .then((lista) => { if (ativo) setEspecies(lista); })
-    //     .catch((problema: ErroDaApi) => { if (ativo) setErro(problema.message); })
-    //     .finally(() => { if (ativo) setCarregando(false); });
-    //   return () => { ativo = false; };
-    //
-    // (e importar ErroDaApi e listarEspeciesPublicas de ../../lib/api)
-    
-    const relogio = setTimeout(() => {
-      setEspecies(especiesFixas);
-      setCarregando(false);
-    }, 500);
-
-    return () => clearTimeout(relogio);
+    let ativo = true;
+    listarEspeciesPublicas()
+      .then((lista) => { if (ativo) setEspecies(lista); })
+      .catch((problema: ErroDaApi) => { if (ativo) setErro(problema.message); })
+      .finally(() => { if (ativo) setCarregando(false); });
+    return () => { ativo = false; };
   }, [] );                                                            // O [] significa "rode só uma vez, quando a página abrir"
 
   /**
@@ -191,26 +160,28 @@ export function Acervo() {
             <ul className="mt-4 grid gap-4 sistema:grid-cols-3">
               {filtradas.map((especie) => (
                 <li key={especie.id}>
-                  <Card className="h-full">
-                    {especie.fotoPrincipalUrl ? (
-                      <img
-                        src={especie.fotoPrincipalUrl}
-                        alt={especie.nomeComum}
-                        loading="lazy"
-                        className="mb-4 h-40 w-full rounded-campo object-cover"
-                      />
-                    ) : (
-                      <div
-                        className="mb-4 h-40 rounded-campo bg-areiaEscura"
-                        aria-hidden="true"
-                      />
-                    )}
-                    <p className="rotulo-portal text-madeira">{especie.familia}</p>
-                    <p className="mt-2 font-display text-24 tracking-titulo text-verdeEscuro">
-                      {especie.nomeComum}
-                    </p>
-                    <p className="mt-1 text-14 italic text-cinzaMeta">{especie.nomeCientifico}</p>
-                  </Card>
+                  <Link to={`/acervo/${especie.id}`} className="block h-full">
+                    <Card className="h-full">
+                      {especie.fotoPrincipalUrl ? (
+                        <img
+                          src={especie.fotoPrincipalUrl}
+                          alt={especie.nomeComum}
+                          loading="lazy"
+                          className="mb-4 h-40 w-full rounded-campo object-cover"
+                        />
+                      ) : (
+                        <div
+                          className="mb-4 h-40 rounded-campo bg-areiaEscura"
+                          aria-hidden="true"
+                        />
+                      )}
+                      <p className="rotulo-portal text-madeira">{especie.familia}</p>
+                      <p className="mt-2 font-display text-24 tracking-titulo text-verdeEscuro">
+                        {especie.nomeComum}
+                      </p>
+                      <p className="mt-1 text-14 italic text-cinzaMeta">{especie.nomeCientifico}</p>
+                    </Card>
+                  </Link>
                 </li>
               ))}
             </ul>

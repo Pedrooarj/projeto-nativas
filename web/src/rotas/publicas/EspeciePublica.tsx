@@ -3,6 +3,12 @@ import { Link, useParams } from "react-router-dom";
 import { buscarEspeciePublica, ErroDaApi, type EspeciePublicaDados } from "../../lib/api";
 import { Card } from "../../componentes/ui/Card";
 
+const NOME_TRATAMENTO: Record<string, string> = {
+  ESCARIFICACAO: "Escarificação (desgaste da casca da semente)",
+  EMBEBICAO: "Embebição em água",
+  N: "Sem tratamento",
+};
+
 /** A API manda a taxa como fração (0,78); a tela mostra porcentagem (78,6%). */
 function formatarTaxa(taxa: number) {
   return `${(taxa * 100).toLocaleString("pt-BR", { maximumFractionDigits: 1 })}%`;
@@ -107,7 +113,8 @@ export function EspeciePublica() {
                   <ul className="mt-2 text-16 text-tintaCard">
                     {dados.numeros.tratamentos.map((item) => (
                       <li key={item.tratamento}>
-                        {item.tratamento} · {item.lotes} {item.lotes === 1 ? "lote" : "lotes"}
+                        {NOME_TRATAMENTO[item.tratamento] ?? item.tratamento} · {item.lotes}{" "}
+                        {item.lotes === 1 ? "lote" : "lotes"}
                       </li>
                     ))}
                   </ul>

@@ -10,3 +10,9 @@ Thumbs.db
 .vscode/
 .idea/
 coverage/
+
+# Fontes pagas da identidade (PP Rader e TT Travels): só na máquina de quem tem a licença
+web/public/fonts/*.otf
+web/public/fonts/*.ttf
+web/public/fonts/*.woff
+web/public/fonts/*.woff2
